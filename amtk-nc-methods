@@ -1,0 +1,344 @@
+
+METHODS
+-------
+  method amtk_action_info_central_store_get_singleton () {
+    amtk_action_info_central_store_get_singleton();
+  }
+
+  method amtk_action_info_central_store_get_type () {
+    amtk_action_info_central_store_get_type();
+  }
+
+  method amtk_action_info_central_store_lookup (AmtkActionInfoCentralStore $central_store, gchar $action_name) {
+    amtk_action_info_central_store_lookup($central_store, $action_name);
+  }
+
+
+METHODS
+-------
+  method amtk_action_info_copy (AmtkActionInfo $info) {
+    amtk_action_info_copy($info);
+  }
+
+  method amtk_action_info_get_accels (AmtkActionInfo $info) {
+    amtk_action_info_get_accels($info);
+  }
+
+  method amtk_action_info_get_action_name (AmtkActionInfo $info) {
+    amtk_action_info_get_action_name($info);
+  }
+
+  method amtk_action_info_get_icon_name (AmtkActionInfo $info) {
+    amtk_action_info_get_icon_name($info);
+  }
+
+  method amtk_action_info_get_label (AmtkActionInfo $info) {
+    amtk_action_info_get_label($info);
+  }
+
+  method amtk_action_info_get_tooltip (AmtkActionInfo $info) {
+    amtk_action_info_get_tooltip($info);
+  }
+
+  method amtk_action_info_get_type () {
+    amtk_action_info_get_type();
+  }
+
+  method amtk_action_info_has_been_used (AmtkActionInfo $info) {
+    amtk_action_info_has_been_used($info);
+  }
+
+  method amtk_action_info_mark_as_used (AmtkActionInfo $info) {
+    amtk_action_info_mark_as_used($info);
+  }
+
+  method amtk_action_info_new () {
+    amtk_action_info_new();
+  }
+
+  method amtk_action_info_new_from_entry (AmtkActionInfoEntry $info_entry, gchar $translation_domain) {
+    amtk_action_info_new_from_entry($info_entry, $translation_domain);
+  }
+
+  method amtk_action_info_ref (AmtkActionInfo $info) {
+    amtk_action_info_ref($info);
+  }
+
+  method amtk_action_info_set_action_name (AmtkActionInfo $info, gchar $action_name) {
+    amtk_action_info_set_action_name($info, $action_name);
+  }
+
+  method amtk_action_info_set_icon_name (AmtkActionInfo $info, gchar $icon_name) {
+    amtk_action_info_set_icon_name($info, $icon_name);
+  }
+
+  method amtk_action_info_set_label (AmtkActionInfo $info, gchar $label) {
+    amtk_action_info_set_label($info, $label);
+  }
+
+  method amtk_action_info_set_tooltip (AmtkActionInfo $info, gchar $tooltip) {
+    amtk_action_info_set_tooltip($info, $tooltip);
+  }
+
+  method amtk_action_info_unref (AmtkActionInfo $info) {
+    amtk_action_info_unref($info);
+  }
+
+
+METHODS
+-------
+  method amtk_action_info_store_add (AmtkActionInfoStore $store, AmtkActionInfo $info) {
+    amtk_action_info_store_add($store, $info);
+  }
+
+  method amtk_action_info_store_add_entries (AmtkActionInfoStore $store, AmtkActionInfoEntry $entries, gint $n_entries, gchar $translation_domain) {
+    amtk_action_info_store_add_entries($store, $entries, $n_entries, $translation_domain);
+  }
+
+  method amtk_action_info_store_check_all_used (AmtkActionInfoStore $store) {
+    amtk_action_info_store_check_all_used($store);
+  }
+
+  method amtk_action_info_store_get_type () {
+    amtk_action_info_store_get_type();
+  }
+
+  method amtk_action_info_store_lookup (AmtkActionInfoStore $store, gchar $action_name) {
+    amtk_action_info_store_lookup($store, $action_name);
+  }
+
+  method amtk_action_info_store_new () {
+    amtk_action_info_store_new();
+  }
+
+  method amtk_action_info_store_set_all_accels_to_app (AmtkActionInfoStore $store, GtkApplication $application) {
+    amtk_action_info_store_set_all_accels_to_app($store, $application);
+  }
+
+
+METHODS
+-------
+  method amtk_action_map_add_action_entries_check_dups (GActionMap $action_map, GActionEntry $entries, gint $n_entries, gpointer $user_data) {
+    amtk_action_map_add_action_entries_check_dups($action_map, $entries, $n_entries, $user_data);
+  }
+
+
+METHODS
+-------
+  method amtk_application_window_connect_menu_to_statusbar (AmtkApplicationWindow $amtk_window, GtkMenuShell $menu_shell) {
+    amtk_application_window_connect_menu_to_statusbar($amtk_window, $menu_shell);
+  }
+
+  method amtk_application_window_connect_recent_chooser_menu_to_statusbar (AmtkApplicationWindow $amtk_window, GtkRecentChooserMenu $menu) {
+    amtk_application_window_connect_recent_chooser_menu_to_statusbar($amtk_window, $menu);
+  }
+
+  method amtk_application_window_create_open_recent_menu (AmtkApplicationWindow $amtk_window) {
+    amtk_application_window_create_open_recent_menu($amtk_window);
+  }
+
+  method amtk_application_window_create_open_recent_menu_item (AmtkApplicationWindow $amtk_window) {
+    amtk_application_window_create_open_recent_menu_item($amtk_window);
+  }
+
+  method amtk_application_window_get_application_window (AmtkApplicationWindow $amtk_window) {
+    amtk_application_window_get_application_window($amtk_window);
+  }
+
+  method amtk_application_window_get_from_gtk_application_window (GtkApplicationWindow $gtk_window) {
+    amtk_application_window_get_from_gtk_application_window($gtk_window);
+  }
+
+  method amtk_application_window_get_statusbar (AmtkApplicationWindow $amtk_window) {
+    amtk_application_window_get_statusbar($amtk_window);
+  }
+
+  method amtk_application_window_get_type () {
+    amtk_application_window_get_type();
+  }
+
+  method amtk_application_window_set_statusbar (AmtkApplicationWindow $amtk_window, GtkStatusbar $statusbar) {
+    amtk_application_window_set_statusbar($amtk_window, $statusbar);
+  }
+
+
+METHODS
+-------
+  method amtk_factory_flags_get_type () {
+    amtk_factory_flags_get_type();
+  }
+
+
+METHODS
+-------
+  method amtk_factory_create_check_menu_item (AmtkFactory $factory, gchar $action_name) {
+    amtk_factory_create_check_menu_item($factory, $action_name);
+  }
+
+  method amtk_factory_create_check_menu_item_full (AmtkFactory $factory, gchar $action_name, AmtkFactoryFlags $flags) {
+    amtk_factory_create_check_menu_item_full($factory, $action_name, $flags);
+  }
+
+  method amtk_factory_create_gmenu_item (AmtkFactory $factory, gchar $action_name) {
+    amtk_factory_create_gmenu_item($factory, $action_name);
+  }
+
+  method amtk_factory_create_gmenu_item_full (AmtkFactory $factory, gchar $action_name, AmtkFactoryFlags $flags) {
+    amtk_factory_create_gmenu_item_full($factory, $action_name, $flags);
+  }
+
+  method amtk_factory_create_menu_item (AmtkFactory $factory, gchar $action_name) {
+    amtk_factory_create_menu_item($factory, $action_name);
+  }
+
+  method amtk_factory_create_menu_item_full (AmtkFactory $factory, gchar $action_name, AmtkFactoryFlags $flags) {
+    amtk_factory_create_menu_item_full($factory, $action_name, $flags);
+  }
+
+  method amtk_factory_create_menu_tool_button (AmtkFactory $factory, gchar $action_name) {
+    amtk_factory_create_menu_tool_button($factory, $action_name);
+  }
+
+  method amtk_factory_create_menu_tool_button_full (AmtkFactory $factory, gchar $action_name, AmtkFactoryFlags $flags) {
+    amtk_factory_create_menu_tool_button_full($factory, $action_name, $flags);
+  }
+
+  method amtk_factory_create_shortcut (AmtkFactory $factory, gchar $action_name) {
+    amtk_factory_create_shortcut($factory, $action_name);
+  }
+
+  method amtk_factory_create_shortcut_full (AmtkFactory $factory, gchar $action_name, AmtkFactoryFlags $flags) {
+    amtk_factory_create_shortcut_full($factory, $action_name, $flags);
+  }
+
+  method amtk_factory_create_simple_menu (AmtkFactory $factory, AmtkActionInfoEntry $entries, gint $n_entries) {
+    amtk_factory_create_simple_menu($factory, $entries, $n_entries);
+  }
+
+  method amtk_factory_create_simple_menu_full (AmtkFactory $factory, AmtkActionInfoEntry $entries, gint $n_entries, AmtkFactoryFlags $flags) {
+    amtk_factory_create_simple_menu_full($factory, $entries, $n_entries, $flags);
+  }
+
+  method amtk_factory_create_tool_button (AmtkFactory $factory, gchar $action_name) {
+    amtk_factory_create_tool_button($factory, $action_name);
+  }
+
+  method amtk_factory_create_tool_button_full (AmtkFactory $factory, gchar $action_name, AmtkFactoryFlags $flags) {
+    amtk_factory_create_tool_button_full($factory, $action_name, $flags);
+  }
+
+  method amtk_factory_get_application (AmtkFactory $factory) {
+    amtk_factory_get_application($factory);
+  }
+
+  method amtk_factory_get_default_flags (AmtkFactory $factory) {
+    amtk_factory_get_default_flags($factory);
+  }
+
+  method amtk_factory_get_type () {
+    amtk_factory_get_type();
+  }
+
+  method amtk_factory_new (GtkApplication $application) {
+    amtk_factory_new($application);
+  }
+
+  method amtk_factory_new_with_default_application () {
+    amtk_factory_new_with_default_application();
+  }
+
+  method amtk_factory_set_default_flags (AmtkFactory $factory, AmtkFactoryFlags $default_flags) {
+    amtk_factory_set_default_flags($factory, $default_flags);
+  }
+
+
+METHODS
+-------
+  method amtk_gmenu_append_item (GMenu $menu, GMenuItem $item) {
+    amtk_gmenu_append_item($menu, $item);
+  }
+
+  method amtk_gmenu_append_section (GMenu $menu, gchar $label, GMenu $section) {
+    amtk_gmenu_append_section($menu, $label, $section);
+  }
+
+
+METHODS
+-------
+
+METHODS
+-------
+  method amtk_finalize () {
+    amtk_finalize();
+  }
+
+  method amtk_init () {
+    amtk_init();
+  }
+
+
+METHODS
+-------
+  method amtk_menu_item_get_long_description (GtkMenuItem $menu_item) {
+    amtk_menu_item_get_long_description($menu_item);
+  }
+
+  method amtk_menu_item_set_icon_name (GtkMenuItem $item, gchar $icon_name) {
+    amtk_menu_item_set_icon_name($item, $icon_name);
+  }
+
+  method amtk_menu_item_set_long_description (GtkMenuItem $menu_item, gchar $long_description) {
+    amtk_menu_item_set_long_description($menu_item, $long_description);
+  }
+
+
+METHODS
+-------
+  method amtk_menu_shell_get_from_gtk_menu_shell (GtkMenuShell $gtk_menu_shell) {
+    amtk_menu_shell_get_from_gtk_menu_shell($gtk_menu_shell);
+  }
+
+  method amtk_menu_shell_get_menu_shell (AmtkMenuShell $amtk_menu_shell) {
+    amtk_menu_shell_get_menu_shell($amtk_menu_shell);
+  }
+
+  method amtk_menu_shell_get_type () {
+    amtk_menu_shell_get_type();
+  }
+
+
+METHODS
+-------
+  method amtk_shortcuts_group_new (gchar $title) {
+    amtk_shortcuts_group_new($title);
+  }
+
+  method amtk_shortcuts_section_new (gchar $title) {
+    amtk_shortcuts_section_new($title);
+  }
+
+  method amtk_shortcuts_window_new (GtkWindow $parent) {
+    amtk_shortcuts_window_new($parent);
+  }
+
+
+METHODS
+-------
+
+METHODS
+-------
+  method amtk_utils_bind_g_action_to_gtk_action (GActionMap $g_action_map, gchar $detailed_g_action_name_without_prefix, GtkActionGroup $gtk_action_group, gchar $gtk_action_name) {
+    amtk_utils_bind_g_action_to_gtk_action($g_action_map, $detailed_g_action_name_without_prefix, $gtk_action_group, $gtk_action_name);
+  }
+
+  method amtk_utils_create_gtk_action (GActionMap $g_action_map, gchar $detailed_g_action_name_with_prefix, GtkActionGroup $gtk_action_group, gchar $gtk_action_name) {
+    amtk_utils_create_gtk_action($g_action_map, $detailed_g_action_name_with_prefix, $gtk_action_group, $gtk_action_name);
+  }
+
+  method amtk_utils_recent_chooser_menu_get_item_uri (GtkRecentChooserMenu $menu, GtkMenuItem $item) {
+    amtk_utils_recent_chooser_menu_get_item_uri($menu, $item);
+  }
+
+  method amtk_utils_remove_mnemonic (gchar $str) {
+    amtk_utils_remove_mnemonic($str);
+  }
