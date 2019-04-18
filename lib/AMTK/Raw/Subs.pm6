@@ -9,7 +9,7 @@ use AMTK::Raw::Types;
 unit package AMTK::Raw::Subs;
 
 sub _amtk_action_info_central_store_add (
-  AmtkActionInfoCentralStore $central_store, 
+  AmtkActionInfoCentralStore $central_store,
   AmtkActionInfo $info
 )
   is native(amtk)
@@ -34,7 +34,7 @@ sub amtk_action_info_central_store_get_type ()
   { * }
 
 sub amtk_action_info_central_store_lookup (
-  AmtkActionInfoCentralStore $central_store, 
+  AmtkActionInfoCentralStore $central_store,
   Str $action_name
 )
   returns AmtkActionInfo
@@ -50,7 +50,7 @@ sub amtk_action_info_copy (AmtkActionInfo $info)
   { * }
 
 sub amtk_action_info_get_accels (AmtkActionInfo $info)
-  returns onst
+  returns CArray[Str]
   is native(amtk)
   is export
   { * }
@@ -103,7 +103,7 @@ sub amtk_action_info_new ()
   { * }
 
 sub amtk_action_info_new_from_entry (
-  AmtkActionInfoEntry $info_entry, 
+  AmtkActionInfoEntry $info_entry,
   Str $translation_domain
 )
   returns AmtkActionInfo
@@ -118,7 +118,7 @@ sub amtk_action_info_ref (AmtkActionInfo $info)
   { * }
 
 sub amtk_action_info_set_action_name (
-  AmtkActionInfo $info, 
+  AmtkActionInfo $info,
   Str $action_name
 )
   is native(amtk)
@@ -126,7 +126,7 @@ sub amtk_action_info_set_action_name (
   { * }
 
 sub amtk_action_info_set_icon_name (
-  AmtkActionInfo $info, 
+  AmtkActionInfo $info,
   Str $icon_name
 )
   is native(amtk)
@@ -134,7 +134,7 @@ sub amtk_action_info_set_icon_name (
   { * }
 
 sub amtk_action_info_set_label (
-  AmtkActionInfo $info, 
+  AmtkActionInfo $info,
   Str $label
 )
   is native(amtk)
@@ -142,7 +142,7 @@ sub amtk_action_info_set_label (
   { * }
 
 sub amtk_action_info_set_tooltip (
-  AmtkActionInfo $info, 
+  AmtkActionInfo $info,
   Str $tooltip
 )
   is native(amtk)
@@ -156,7 +156,7 @@ sub amtk_action_info_unref (AmtkActionInfo $info)
 
 
 sub amtk_action_info_store_add (
-  AmtkActionInfoStore $store, 
+  AmtkActionInfoStore $store,
   AmtkActionInfo $info
 )
   is native(amtk)
@@ -164,9 +164,9 @@ sub amtk_action_info_store_add (
   { * }
 
 sub amtk_action_info_store_add_entries (
-  AmtkActionInfoStore $store, 
-  AmtkActionInfoEntry $entries, 
-  gint $n_entries, 
+  AmtkActionInfoStore $store,
+  AmtkActionInfoEntry $entries,
+  gint $n_entries,
   Str $translation_domain
 )
   is native(amtk)
@@ -187,7 +187,7 @@ sub amtk_action_info_store_get_type ()
   { * }
 
 sub amtk_action_info_store_lookup (
-  AmtkActionInfoStore $store, 
+  AmtkActionInfoStore $store,
   Str $action_name
 )
   returns AmtkActionInfo
@@ -202,7 +202,7 @@ sub amtk_action_info_store_new ()
   { * }
 
 sub amtk_action_info_store_set_all_accels_to_app (
-  AmtkActionInfoStore $store, 
+  AmtkActionInfoStore $store,
   GtkApplication $application
 )
   is native(amtk)
@@ -211,9 +211,9 @@ sub amtk_action_info_store_set_all_accels_to_app (
 
 
 sub amtk_action_map_add_action_entries_check_dups (
-  GActionMap $action_map, 
-  GActionEntry $entries, 
-  gint $n_entries, 
+  GActionMap $action_map,
+  GActionEntry $entries,
+  gint $n_entries,
   gpointer $user_data
 )
   is native(amtk)
@@ -222,7 +222,7 @@ sub amtk_action_map_add_action_entries_check_dups (
 
 
 sub amtk_application_window_connect_menu_to_statusbar (
-  AmtkApplicationWindow $amtk_window, 
+  AmtkApplicationWindow $amtk_window,
   GtkMenuShell $menu_shell
 )
   is native(amtk)
@@ -230,7 +230,7 @@ sub amtk_application_window_connect_menu_to_statusbar (
   { * }
 
 sub amtk_application_window_connect_recent_chooser_menu_to_statusbar (
-  AmtkApplicationWindow $amtk_window, 
+  AmtkApplicationWindow $amtk_window,
   GtkRecentChooserMenu $menu
 )
   is native(amtk)
@@ -284,7 +284,7 @@ sub amtk_application_window_get_type ()
   { * }
 
 sub amtk_application_window_set_statusbar (
-  AmtkApplicationWindow $amtk_window, 
+  AmtkApplicationWindow $amtk_window,
   GtkStatusbar $statusbar
 )
   is native(amtk)
@@ -300,7 +300,7 @@ sub amtk_factory_flags_get_type ()
 
 
 sub amtk_factory_create_check_menu_item (
-  AmtkFactory $factory, 
+  AmtkFactory $factory,
   Str $action_name
 )
   returns GtkWidget
@@ -309,9 +309,9 @@ sub amtk_factory_create_check_menu_item (
   { * }
 
 sub amtk_factory_create_check_menu_item_full (
-  AmtkFactory $factory, 
-  Str $action_name, 
-  AmtkFactoryFlags $flags
+  AmtkFactory $factory,
+  Str $action_name,
+  uint32 $flags               # AmtkFactoryFlagsflags
 )
   returns GtkWidget
   is native(amtk)
@@ -325,9 +325,9 @@ sub amtk_factory_create_gmenu_item (AmtkFactory $factory, Str $action_name)
   { * }
 
 sub amtk_factory_create_gmenu_item_full (
-  AmtkFactory $factory, 
-  Str $action_name, 
-  AmtkFactoryFlags $flags
+  AmtkFactory $factory,
+  Str $action_name,
+  uint32 $flags               # AmtkFactoryFlagsflags
 )
   returns GMenuItem
   is native(amtk)
@@ -341,9 +341,9 @@ sub amtk_factory_create_menu_item (AmtkFactory $factory, Str $action_name)
   { * }
 
 sub amtk_factory_create_menu_item_full (
-  AmtkFactory $factory, 
-  Str $action_name, 
-  AmtkFactoryFlags $flags
+  AmtkFactory $factory,
+  Str $action_name,
+  uint32 $flags               # AmtkFactoryFlagsflags
 )
   returns GtkWidget
   is native(amtk)
@@ -351,7 +351,7 @@ sub amtk_factory_create_menu_item_full (
   { * }
 
 sub amtk_factory_create_menu_tool_button (
-  AmtkFactory $factory, 
+  AmtkFactory $factory,
   Str $action_name
 )
   returns GtkMenuToolButton
@@ -360,9 +360,9 @@ sub amtk_factory_create_menu_tool_button (
   { * }
 
 sub amtk_factory_create_menu_tool_button_full (
-  AmtkFactory $factory, 
-  Str $action_name, 
-  AmtkFactoryFlags $flags
+  AmtkFactory $factory,
+  Str $action_name,
+  uint32 $flags               # AmtkFactoryFlagsflags
 )
   returns GtkMenuToolButton
   is native(amtk)
@@ -376,9 +376,9 @@ sub amtk_factory_create_shortcut (AmtkFactory $factory, Str $action_name)
   { * }
 
 sub amtk_factory_create_shortcut_full (
-  AmtkFactory $factory, 
-  Str $action_name, 
-  AmtkFactoryFlags $flags
+  AmtkFactory $factory,
+  Str $action_name,
+  uint32 $flags               # AmtkFactoryFlagsflags
 )
   returns GtkWidget
   is native(amtk)
@@ -386,8 +386,8 @@ sub amtk_factory_create_shortcut_full (
   { * }
 
 sub amtk_factory_create_simple_menu (
-  AmtkFactory $factory, 
-  AmtkActionInfoEntry $entries, 
+  AmtkFactory $factory,
+  AmtkActionInfoEntry $entries,
   gint $n_entries
 )
   returns GtkWidget
@@ -396,10 +396,10 @@ sub amtk_factory_create_simple_menu (
   { * }
 
 sub amtk_factory_create_simple_menu_full (
-  AmtkFactory $factory, 
-  AmtkActionInfoEntry $entries, 
-  gint $n_entries, 
-  AmtkFactoryFlags $flags
+  AmtkFactory $factory,
+  AmtkActionInfoEntry $entries,
+  gint $n_entries,
+  uint32 $flags               # AmtkFactoryFlagsflags
 )
   returns GtkWidget
   is native(amtk)
@@ -407,7 +407,7 @@ sub amtk_factory_create_simple_menu_full (
   { * }
 
 sub amtk_factory_create_tool_button (
-  AmtkFactory $factory, 
+  AmtkFactory $factory,
   Str $action_name
 )
   returns GtkToolItem
@@ -416,9 +416,9 @@ sub amtk_factory_create_tool_button (
   { * }
 
 sub amtk_factory_create_tool_button_full (
-  AmtkFactory $factory, 
-  Str $action_name, 
-  AmtkFactoryFlags $flags
+  AmtkFactory $factory,
+  Str $action_name,
+  uint32 $flags               # AmtkFactoryFlagsflags
 )
   returns GtkToolItem
   is native(amtk)
@@ -432,7 +432,7 @@ sub amtk_factory_get_application (AmtkFactory $factory)
   { * }
 
 sub amtk_factory_get_default_flags (AmtkFactory $factory)
-  returns AmtkFactoryFlags
+  returns uint32              # AmtkFactoryFlags
   is native(amtk)
   is export
   { * }
@@ -456,8 +456,8 @@ sub amtk_factory_new_with_default_application ()
   { * }
 
 sub amtk_factory_set_default_flags (
-  AmtkFactory $factory, 
-  AmtkFactoryFlags $default_flags
+  AmtkFactory $factory,
+  uint32 $default_flags       # AmtkFactoryFlags $default_flags
 )
   is native(amtk)
   is export
@@ -499,7 +499,7 @@ sub amtk_menu_item_set_icon_name (GtkMenuItem $item, Str $icon_name)
   { * }
 
 sub amtk_menu_item_set_long_description (
-  GtkMenuItem $menu_item, 
+  GtkMenuItem $menu_item,
   Str $long_description
 )
   is native(amtk)
@@ -544,8 +544,6 @@ sub amtk_shortcuts_window_new (GtkWindow $parent)
   is export
   { * }
 
-
-
 sub _amtk_utils_replace_home_dir_with_tilde (Str $filename)
   returns Str
   is native(amtk)
@@ -553,9 +551,9 @@ sub _amtk_utils_replace_home_dir_with_tilde (Str $filename)
   { * }
 
 sub amtk_utils_bind_g_action_to_gtk_action (
-  GActionMap $g_action_map, 
-  Str $detailed_g_action_name_without_prefix, 
-  GtkActionGroup $gtk_action_group, 
+  GActionMap $g_action_map,
+  Str $detailed_g_action_name_without_prefix,
+  Pointer $gtk_action_group,                        # GtkActionGroup
   Str $gtk_action_name
 )
   is native(amtk)
@@ -563,9 +561,9 @@ sub amtk_utils_bind_g_action_to_gtk_action (
   { * }
 
 sub amtk_utils_create_gtk_action (
-  GActionMap $g_action_map, 
-  Str $detailed_g_action_name_with_prefix, 
-  GtkActionGroup $gtk_action_group, 
+  GActionMap $g_action_map,
+  Str $detailed_g_action_name_with_prefix,
+  Pointer $gtk_action_group,                        # GtkActionGroup
   Str $gtk_action_name
 )
   is native(amtk)
@@ -573,7 +571,7 @@ sub amtk_utils_create_gtk_action (
   { * }
 
 sub amtk_utils_recent_chooser_menu_get_item_uri (
-  GtkRecentChooserMenu $menu, 
+  GtkRecentChooserMenu $menu,
   GtkMenuItem $item
 )
   returns Str
