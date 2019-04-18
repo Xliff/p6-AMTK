@@ -10,6 +10,7 @@ use AMTK::Raw::Subs;
 
 use GTK::Compat::Roles::Object;
 use AMTK::Roles::Signals;
+use AMTK::Roles::TypedBuffer;
 
 # CLASS OBJECT
 class AMTK::Main {
@@ -647,15 +648,22 @@ class AMTK::ActionInfoStore {
     amtk_action_info_store_add($!ais, $info);
   }
 
-  method add_entries (
-    AmtkActionInfoEntry() $entries,
+  multi method add_entries(@entries, Str() $translation_domain) {
+    my $buf = (Buf.new but AMTK::Roles::TypedBuffer[AmtkActionInfo]).allocate(
+      @entries.elems
+    );
+    $buf[$_] = @entries[$_] for ^@entries.elems;
+    samewith($buf, $buf.elems, $translation_domain);
+  }
+  multi method add_entries (
+    Buf() $entries,
     Int() $n_entries,
     Str() $translation_domain
   ) {
     my gint $n = resolve-int($n_entries);
     amtk_action_info_store_add_entries(
       $!ais,
-      $entries,
+      cast(gpointer, $entries),
       $n,
       $translation_domain
     );

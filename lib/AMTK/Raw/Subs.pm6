@@ -165,7 +165,7 @@ sub amtk_action_info_store_add (
 
 sub amtk_action_info_store_add_entries (
   AmtkActionInfoStore $store,
-  AmtkActionInfoEntry $entries,
+  Pointer $entries,                         # BLOCK of AmtkActionInfo
   gint $n_entries,
   Str $translation_domain
 )
