@@ -35,17 +35,21 @@ class AMTK::ActionInfo {
     $!i = $info;
   }
 
-  method AMTK::Raw::TYpes::AmtkActionInfo
+  method AMTK::Raw::Types::AmtkActionInfo
     #is also<ActionInfo>
   { $!i }
 
-  method new {
+  multi method new (AmtkActionInfo $info) {
+    say "Info: { $info }";
+    self.bless(:$info);
+  }
+  multi method new {
     self.bless( info => amtk_action_info_new() );
   }
 
   method new_from_entry (
     AmtkActionInfoEntry $info_entry,
-    Str() $translation_domain
+    Str() $translation_domain = Str
   ) {
     self.bless(
       info => amtk_action_info_new_from_entry(
@@ -58,7 +62,7 @@ class AMTK::ActionInfo {
   method accels is rw {
     Proxy.new:
       FETCH => -> $,          { self.get_accels     },
-      STORE => -> $, $a       { self.set_accels($a) };
+      STORE => -> $, @a       { self.set_accels(@a) };
   }
 
   method action_name is rw {
@@ -191,9 +195,10 @@ class AMTK::ActionInfoCentralStore {
   }
 
   method lookup (AMTK::ActionInfoCentralStore:D: Str() $action_name) {
+    say "Looking up action { $action_name }":
     AMTK::ActionInfo.new(
       amtk_action_info_central_store_lookup(
-        amtk_action_info_central_store_get_singleton(),
+        $singleton,
         $action_name
       )
     );
@@ -204,9 +209,17 @@ class AMTK::ActionInfoCentralStore {
 # CLASS OBJECT
 class AMTK::ActionMap {
 
-  method add_action_entries_check_dups (
+  multi method add_action_entries_check_dups(
     GActionMap() $action_map,
-    GActionEntry() $entries,
+    @entries,
+    gpointer $user_data = gpointer
+  ) {
+    my $e = AMTK::ActionInfoEntryBlock(@entries);
+    samewith($action_map, $e.p, $e.elems, $user_data)
+  }
+  multi method add_action_entries_check_dups (
+    GActionMap() $action_map,
+    Pointer $entries,                       # BLOCK of GActionEntry
     Int() $n_entries,
     gpointer $user_data = gpointer
   ) {
@@ -246,6 +259,10 @@ class AMTK::ApplicationWindow {
   method AMTK::Raw::Types::AmtkApplicationWindow
     #is also<ApplicationWindow>
   { $!aaw }
+
+  multi method new (AmtkApplicationWindow $window) {
+    self.bless(:$window);
+  }
 
   method get_from_gtk_application_window (
     GtkApplicationWindow $gtk_window
@@ -342,7 +359,10 @@ class AMTK::Factory {
     #is also<AmtkFactory>
   { $!af }
 
-  method new (GtkApplication() $application) {
+  multi method new (AmtkFactory $factory) {
+    self.bless(:$factory);
+  }
+  multi method new (GtkApplication() $application) {
     self.bless( factory => amtk_factory_new($application) );
   }
 
@@ -517,6 +537,16 @@ class AMTK::MenuShell {
     self!setObject($!ams = $shell);
   }
 
+  method new (AmtkMenuShell $shell) {
+    self.bless(:$shell);
+  }
+
+  method get_from_gtk_menu_shell (GtkMenuShell() $gtk_menu_shell) {
+    self.bless(
+      shell => amtk_menu_shell_get_from_gtk_menu_shell($gtk_menu_shell)
+    );
+  }
+
   # Potential Conflict allowed due to compatibility.
   method AMTK::Raw::Types::AmtkMenuShell
     #is also<MenuShell>
@@ -532,12 +562,6 @@ class AMTK::MenuShell {
   # AmtkMenuShell, GtkMenuItem, gpointer --> void
   method menu-item-selected {
     self.connect-menu-item-selected($!ams);
-  }
-
-  method get_from_gtk_menu_shell (GtkMenuShell() $gtk_menu_shell) {
-    self.bless(
-      shell => amtk_menu_shell_get_from_gtk_menu_shell($gtk_menu_shell)
-    );
   }
 
   method get_menu_shell {
@@ -657,7 +681,10 @@ class AMTK::ActionInfoStore {
     self!setObject($!ais = $store);
   }
 
-  method new {
+  multi method new (AmtkActionInfoStore $store) {
+    self.bless(:$store);
+  }
+  multi method new {
     self.bless( store => amtk_action_info_store_new() );
   }
 
@@ -669,22 +696,22 @@ class AMTK::ActionInfoStore {
     amtk_action_info_store_add($!ais, $info);
   }
 
-  multi method add_entries(@entries, Str() $translation_domain) {
-    my $buf = (Buf.new but AMTK::Roles::TypedBuffer[AmtkActionInfo]).allocate(
-      @entries.elems
-    );
-    $buf[$_] = @entries[$_] for ^@entries.elems;
-    samewith($buf, $buf.elems, $translation_domain);
+  multi method add_entries(
+    @entries,
+    Str() $translation_domain = Str
+  ) {
+    my $b = AMTK::ActionInfoEntryBlock.new(@entries);
+    samewith($b, $b.elems, $translation_domain);
   }
   multi method add_entries (
-    Buf() $entries,
-    Int() $n_entries,
-    Str() $translation_domain
+    Pointer() $entries,
+    Int()     $n_entries,
+    Str()     $translation_domain = Str
   ) {
     my gint $n = resolve-int($n_entries);
     amtk_action_info_store_add_entries(
       $!ais,
-      cast(gpointer, $entries),
+      $entries,
       $n,
       $translation_domain
     );
@@ -700,9 +727,10 @@ class AMTK::ActionInfoStore {
   }
 
   method lookup (Str() $action_name) {
-    AMTK::ActionInfo.new(
-      amtk_action_info_store_lookup($!ais, $action_name)
-    );
+    say "Looking up action: { $action_name }...";
+    my $info = amtk_action_info_store_lookup($!ais, $action_name);
+    say "ActionInfo: $info";
+    AMTK::ActionInfo.new($info);
   }
 
   method set_all_accels_to_app (GtkApplication() $application) {

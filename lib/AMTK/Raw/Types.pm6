@@ -26,7 +26,7 @@ class AmtkActionInfoEntry is repr('CStruct') is export {
 
 	method action_name is rw {
 		Proxy.new:
-			FETCH => -> $ { $.action_name },
+			FETCH => -> $ { $!action_name },
 			STORE => -> $, Str() $val {
 				nqp::bindattr(
 					nqp::decont(self),
@@ -39,12 +39,12 @@ class AmtkActionInfoEntry is repr('CStruct') is export {
 
 	method icon_name is rw {
 		Proxy.new:
-			FETCH => -> $ { $.icon_name },
+			FETCH => -> $ { $!icon_name },
 			STORE => -> $, Str() $val {
 				nqp::bindattr(
 					nqp::decont(self),
 					AmtkActionInfoEntry,
-					'$!action_name',
+					'$!icon_name',
 					nqp::decont( $val )
 				);
 			}
@@ -52,7 +52,7 @@ class AmtkActionInfoEntry is repr('CStruct') is export {
 
 	method label is rw {
 		Proxy.new:
-			FETCH => -> $ { $.label_name },
+			FETCH => -> $ { $!label },
 			STORE => -> $, Str() $val {
 				nqp::bindattr(
 					nqp::decont(self),
@@ -65,7 +65,7 @@ class AmtkActionInfoEntry is repr('CStruct') is export {
 
 	method accel is rw {
 		Proxy.new:
-			FETCH => -> $ { $.accel },
+			FETCH => -> $ { $!accel },
 			STORE => -> $, Str() $val {
 				nqp::bindattr(
 					nqp::decont(self),
@@ -78,7 +78,7 @@ class AmtkActionInfoEntry is repr('CStruct') is export {
 
 	method tooltip is rw {
 		Proxy.new:
-			FETCH => -> $ { $.tooltip },
+			FETCH => -> $ { $!tooltip },
 			STORE => -> $, Str() $val {
 				nqp::bindattr(
 					nqp::decont(self),
@@ -96,19 +96,21 @@ class AmtkActionInfoEntry is repr('CStruct') is export {
     :$accel,
     :$tooltip
   ) {
+		say "{ ::?CLASS.^name } BUILD enter";
 		self.action_name = $action_name;
 		self.icon_name   = $icon_name;
 		self.label       = $label;
 		self.accel       = $accel;
 		self.tooltip     = $tooltip;
+		say "{ ::?CLASS.^name } BUILD exit;";
 	}
 
   method new (
     Str() $action_name,
-    Str() $icon_name,
-    Str() $label,
-    Str() $accel,
-    Str() $tooltip
+    Str() $icon_name   = Str,
+    Str() $label       = Str,
+    Str() $accel       = Str,
+    Str() $tooltip     = Str
   ) {
     self.bless(
       :$action_name,
