@@ -117,6 +117,14 @@ sub amtk_action_info_ref (AmtkActionInfo $info)
   is export
   { * }
 
+sub amtk_action_info_set_accels (
+  AmtkActionInfo $info,
+  CArray[Str] $accels
+)
+  is native(amtk)
+  is export
+  { * }
+
 sub amtk_action_info_set_action_name (
   AmtkActionInfo $info,
   Str $action_name

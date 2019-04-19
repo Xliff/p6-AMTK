@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use GTK::Compat::Types;
 use GTK::Raw::Types;
 use AMTK::Raw::Types;
@@ -53,9 +55,15 @@ class AMTK::ActionInfo {
     );
   }
 
+  method accels is rw {
+    Proxy.new:
+      FETCH => -> $,          { self.get_accels     },
+      STORE => -> $, $a       { self.set_accels($a) };
+  }
+
   method action_name is rw {
     Proxy.new:
-      FETCH => -> $           { self.get_action_name },
+      FETCH => -> $           { self.get_action_name     },
       STORE => -> $, Str() $v { self.set_action_name($v) };
   }
 
@@ -82,10 +90,10 @@ class AMTK::ActionInfo {
   }
 
   method get_accels {
-    my $c = amtk_action_info_get_accels($!i);
-    my ($i, @c) = (0);
-    @c[$i] = $c[$i++] while $c[$i].defined;
-    @c;
+    my ($i, @a) = ( 0 );
+    my CArray[Str] $a = amtk_action_info_get_accels($!i);
+    @a[$i] = $a[$i++] while $a[$i].defined;
+    @a;
   }
 
   method get_action_name {
@@ -118,6 +126,18 @@ class AMTK::ActionInfo {
 
   method ref {
     amtk_action_info_ref($!i);
+  }
+
+  multi method set_accels (@accels) {
+    die 'Must be an array of string compatible objects.'
+      unless @accels.grep({ $_.^can('Str').elems }).elems == @accels.elems;
+    my $a = CArray[Str].new;
+    $a[$_] = @accels[$_] for ^@accels;
+    $a[@accels.elems] = Str;
+    samewith($a);
+  }
+  multi method set_accels (CArray[Str] $accels) {
+    amtk_action_info_set_accels($!i, $accels);
   }
 
   method set_action_name (Str() $action_name) {
@@ -534,7 +554,7 @@ class AMTK::MenuShell {
 
 # CLASS OBJECT
 
-class AMTL::GMenu {
+class AMTK::GMenu {
 
   method append_item (GMenu() $menu, GMenuItem() $item) {
     amtk_gmenu_append_item($menu, $item);
