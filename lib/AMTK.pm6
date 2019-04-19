@@ -17,11 +17,11 @@ use AMTK::Roles::TypedBuffer;
 # CLASS OBJECT
 class AMTK::Main {
 
-  method amtk_finalize {
+  method finalize {
     amtk_finalize;
   }
 
-  method amtk_init {
+  method init {
     amtk_init;
   }
 
@@ -230,8 +230,8 @@ class AMTK::ActionMap {
 class AMTK::ApplicationWindow {
   use GTK::Application;
   use GTK::MenuItem;
-  #use GTK::RecentChooserMenu;
-  #use GTK::RecentMenuItem;
+  use GTK::RecentChooserMenu;
+  use GTK::MenuItem;
   use GTK::Statusbar;
 
   also does GTK::Compat::Roles::Object;
@@ -279,15 +279,15 @@ class AMTK::ApplicationWindow {
   }
 
   method create_open_recent_menu {
-    #GTK::RecentChooserMenu.new(
+    GTK::RecentChooserMenu.new(
       amtk_application_window_create_open_recent_menu($!aaw)
-    #);
+    );
   }
 
   method create_open_recent_menu_item {
-    #GTK::RecentMenuItem.new(
+    GTK::MenuItem.new(
       amtk_application_window_create_open_recent_menu_item($!aaw)
-    #);
+    );
   }
 
   method get_application_window {
@@ -324,6 +324,7 @@ class AMTK::Factory {
   use GTK::Compat::MenuItem;
   use GTK::Application;
   use GTK::CheckMenuItem;
+  use GTK::Menu;
   use GTK::MenuItem;
   use GTK::MenuToolButton;
   use GTK::ToolItem;

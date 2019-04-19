@@ -16,19 +16,92 @@ class AmtkFactory                is repr('CPointer') is export does GTK::Roles::
 class AmtkMenuShell              is repr('CPointer') is export does GTK::Roles::Pointers { }
 
 class AmtkActionInfoEntry is repr('CStruct') is export {
-	has Str $.action_name;
-	has Str $.icon_name;
-	has Str $.label;
-	has Str $.accel;
-	has Str $.tooltip;
+	use nqp;
+
+	has Str $!action_name;
+	has Str $!icon_name;
+	has Str $!label;
+	has Str $!accel;
+	has Str $!tooltip;
+
+	method action_name is rw {
+		Proxy.new:
+			FETCH => -> $ { $.action_name },
+			STORE => -> $, Str() $val {
+				nqp::bindattr(
+					nqp::decont(self),
+					AmtkActionInfoEntry,
+					'$!action_name',
+					nqp::decont( $val )
+				);
+			}
+	}
+
+	method icon_name is rw {
+		Proxy.new:
+			FETCH => -> $ { $.icon_name },
+			STORE => -> $, Str() $val {
+				nqp::bindattr(
+					nqp::decont(self),
+					AmtkActionInfoEntry,
+					'$!action_name',
+					nqp::decont( $val )
+				);
+			}
+	}
+
+	method label is rw {
+		Proxy.new:
+			FETCH => -> $ { $.label_name },
+			STORE => -> $, Str() $val {
+				nqp::bindattr(
+					nqp::decont(self),
+					AmtkActionInfoEntry,
+					'$!label',
+					nqp::decont( $val )
+				);
+			}
+	}
+
+	method accel is rw {
+		Proxy.new:
+			FETCH => -> $ { $.accel },
+			STORE => -> $, Str() $val {
+				nqp::bindattr(
+					nqp::decont(self),
+					AmtkActionInfoEntry,
+					'$!accel',
+					nqp::decont( $val )
+				);
+			}
+	}
+
+	method tooltip is rw {
+		Proxy.new:
+			FETCH => -> $ { $.tooltip },
+			STORE => -> $, Str() $val {
+				nqp::bindattr(
+					nqp::decont(self),
+					AmtkActionInfoEntry,
+					'$!tooltip',
+					nqp::decont( $val )
+				);
+			}
+	}
 
   submethod BUILD (
-    :$!action_name,
-    :$!icon_name,
-    :$!label,
-    :$!accel,
-    :$!tooltip
-  ) { }
+    :$action_name,
+    :$icon_name,
+    :$label,
+    :$accel,
+    :$tooltip
+  ) {
+		self.action_name = $action_name;
+		self.icon_name   = $icon_name;
+		self.label       = $label;
+		self.accel       = $accel;
+		self.tooltip     = $tooltip;
+	}
 
   method new (
     Str() $action_name,
