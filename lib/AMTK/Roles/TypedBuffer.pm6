@@ -25,6 +25,13 @@ role AMTK::Roles::TypedBuffer[::T] does Positional {
     #free( $!b // nativecast(Pointer, self) );
   }
 
+  method NativeCall::Types::Pointer
+    is also<
+      Pointer
+      p
+    >
+  { $!b }
+
   # Cribbed from MySQL::Native. Thanks, ctilmes!
   method AT-POS(Int $field) {
     # warn 'Must call .setSize before attempting to use as a positional!'
@@ -84,15 +91,17 @@ role AMTK::Roles::TypedBuffer[::T] does Positional {
 class AMTK::ActionInfoEntryBlock {
   also does AMTK::Roles::TypedBuffer[AmtkActionInfoEntry];
 
-  method AMTK::Raw::Types::ActionInfoEntry {
+  method AMTK::Raw::Types::AmtkActionInfoEntry {
     nativecast(AmtkActionInfoEntry, $!b);
   }
 
-  method NativeCall::Types::Pointer
-    is also<
-      Pointer
-      p
-    >
-  { $!b }
+}
+
+class AMTK::GActionEntryBlock {
+  also does AMTK::Roles::TypedBuffer[GActionEntry];
+
+  method GTK::Compat::Raw::GActionEntry {
+    nativecast(GActionEntry, $!b);
+  }
 
 }

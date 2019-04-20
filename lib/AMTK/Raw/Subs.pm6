@@ -220,7 +220,7 @@ sub amtk_action_info_store_set_all_accels_to_app (
 
 sub amtk_action_map_add_action_entries_check_dups (
   GActionMap $action_map,
-  GActionEntry $entries,
+  Pointer $entries,                         # BLOCK of GActionEntry
   gint $n_entries,
   gpointer $user_data
 )

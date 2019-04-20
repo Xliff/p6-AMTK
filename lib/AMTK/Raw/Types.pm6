@@ -96,13 +96,13 @@ class AmtkActionInfoEntry is repr('CStruct') is export {
     :$accel,
     :$tooltip
   ) {
-		say "{ ::?CLASS.^name } BUILD enter";
+		#say "{ ::?CLASS.^name } BUILD enter";
 		self.action_name = $action_name;
 		self.icon_name   = $icon_name;
 		self.label       = $label;
 		self.accel       = $accel;
 		self.tooltip     = $tooltip;
-		say "{ ::?CLASS.^name } BUILD exit;";
+		#say "{ ::?CLASS.^name } BUILD exit;";
 	}
 
   method new (

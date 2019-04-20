@@ -14,18 +14,21 @@ use GTK::MenuButton;
 
 use AMTK;
 
-my $action_info_store;
+my ($app, $action_info_store);
 
 sub add_action_info_entries {
   my @entries = (
-    AmtkActionInfoEntry.new('win.show_side-panel', Str, '_Side Panel', 'F9',
+    AmtkActionInfoEntry.new('win.show-side-panel', Str, '_Side Panel', 'F9',
       'Toggle side panel visibility'),
     AmtkActionInfoEntry.new('win.print', Str, '_Print', '<Control>p'),
     AmtkActionInfoEntry.new('win.shortcuts-window', Str, '_Keyboard Shortcuts')
   );
 
-  my $action_info_store = AMTK::ActionInfoStore.new;
-  $action_info_store.add_entries(@entries);
+  $action_info_store = AMTK::ActionInfoStore.new;
+  # Although this should work, it does not. Therefore we use a fortunate
+  # workaround.
+  #$action_info_store.add_entries(@entries);
+  $action_info_store.add( AMTK::ActionInfo.new_from_entry($_) ) for @entries;
 
   my @accels = ('<Control>F1', '<Control>question');
   my $action_info = $action_info_store.lookup('win.shortcuts-window');
@@ -33,14 +36,16 @@ sub add_action_info_entries {
 }
 
 sub shortcuts_window_activate_cb ($w) {
-  my $group = AMTK::ShortcutsGroup.new('General');
+  CATCH { default { .message.say; } }
+
+  my $group   = AMTK::Shortcuts.new_group('General');
+  my $section = AMTK::Shortcuts.new_section('');
+  my $window  = AMTK::Shortcuts.new_window($w);
   my $factory = AMTK::Factory.new;
-  my $section = AMTK::ShortcutsSection.new;
-  my $window = AMTK::ShortcutsWindow.new($w);
 
   $factory.default_flags = AMTK_FACTORY_IGNORE_GACTION;
-  $group.add: AMTK::Factory.create_shortcut('win.show-side-panel');
-  $group.add: AMTK::Factory.create_shortcut('win.print');
+  $group.add: $factory.create_shortcut('win.show-side-panel');
+  $group.add: $factory.create_shortcut('win.print');
   $section.add($group);
   $window.add($section);
   $window.show_all;
@@ -56,32 +61,32 @@ sub add_win_actions ($w, $sp) {
       -> GSimpleAction, GVariant, gpointer {
         shortcuts_window_activate_cb ($w);
       }
-    ),
-    GActionEntry
+    )
   );
 
-  AMTK::ActionMap.add_action_entries_check_dups(@entries);
+  AMTK::ActionMap.add_action_entries_check_dups($w, @entries);
 
   my $side_panel_action = GTK::Compat::PropertyAction.new(
     'show-side-panel', $sp, 'visible'
   );
+  $w.add_action($side_panel_action);
 }
 
 sub create_window_menu {
   my $menu = GTK::Compat::Menu.new;
-  my $factory = AMTK::Factory.new_with_default_application;
+  my $factory = AMTK::Factory.new;
 
   AMTK::GMenu.append_item(
     $menu,
-    $factory.create_gmenu_item('win-show-side-panel')
+    $factory.create_gmenu_item('win.show-side-panel')
   );
   AMTK::GMenu.append_item(
     $menu,
-    $factory.create_gmenu_item('win-print')
+    $factory.create_gmenu_item('win.print')
   );
   AMTK::GMenu.append_item(
     $menu,
-    $factory.create_gmenu_item('win-shortcuts-window')
+    $factory.create_gmenu_item('win.shortcuts-window')
   );
   $menu.freeze;
   $menu.GMenuModel;
@@ -101,13 +106,16 @@ sub create_header_bar {
 
 sub MAIN {
   AMTK::Main.init;
-  my $app = GTK::Application.new(
+  $app = GTK::Application.new(
     title => 'org.genex.amtk.test-headerbar',
     flags => G_APPLICATION_FLAGS_NONE
   );
 
+  my $menu = GTK::Compat::Menu.new;
+
   $app.startup. tap({ add_action_info_entries });
   $app.activate.tap({
+    $app.wait-for-init;
     $app.window.set_default_size(800, 600);
     $app.window.titlebar = create_header_bar;
 
@@ -117,11 +125,11 @@ sub MAIN {
     $hgrid.add($side_panel);
     $hgrid.add($label);
 
-    add_win_actions($app.window);
+    add_win_actions($app.window, $side_panel);
     $app.window.add($hgrid);
     $app.window.show_all;
 
-    $action_info_store.check_all_used
+    $action_info_store.check_all_used;
   });
 
   my $status = $app.run;

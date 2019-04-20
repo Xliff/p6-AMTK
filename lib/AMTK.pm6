@@ -17,6 +17,10 @@ use AMTK::Roles::TypedBuffer;
 # CLASS OBJECT
 class AMTK::Main {
 
+  method new(|) {
+    die "{ ::?CLASS.^name } cannot be instantiated!";
+  }
+
   method finalize {
     amtk_finalize;
   }
@@ -28,6 +32,7 @@ class AMTK::Main {
 }
 
 # BOXED TYPE
+
 class AMTK::ActionInfo {
   has AmtkActionInfo $!i;
 
@@ -40,7 +45,6 @@ class AMTK::ActionInfo {
   { $!i }
 
   multi method new (AmtkActionInfo $info) {
-    say "Info: { $info }";
     self.bless(:$info);
   }
   multi method new {
@@ -195,13 +199,15 @@ class AMTK::ActionInfoCentralStore {
   }
 
   method lookup (AMTK::ActionInfoCentralStore:D: Str() $action_name) {
-    say "Looking up action { $action_name }":
-    AMTK::ActionInfo.new(
+    say "{ ::?CLASS.^name }: Looking up action { $action_name }..." if $DEBUG;
+    my $l = AMTK::ActionInfo.new(
       amtk_action_info_central_store_lookup(
         $singleton,
         $action_name
       )
     );
+    say "{ ::?CLASS.^name }: Result: $l" if $DEBUG;
+    $l
   }
 
 }
@@ -209,12 +215,16 @@ class AMTK::ActionInfoCentralStore {
 # CLASS OBJECT
 class AMTK::ActionMap {
 
+  method new(|) {
+    die "{ ::?CLASS.^name } cannot be instantiated!";
+  }
+
   multi method add_action_entries_check_dups(
     GActionMap() $action_map,
     @entries,
     gpointer $user_data = gpointer
   ) {
-    my $e = AMTK::ActionInfoEntryBlock(@entries);
+    my $e = AMTK::GActionEntryBlock.new(@entries);
     samewith($action_map, $e.p, $e.elems, $user_data)
   }
   multi method add_action_entries_check_dups (
@@ -232,10 +242,6 @@ class AMTK::ActionMap {
     );
   }
 
-  method new (|) {
-    die 'AMTK::ActionMap cannot be instantiated, please use the class type.'
-  }
-
 }
 
 # GObject
@@ -247,12 +253,16 @@ class AMTK::ApplicationWindow {
   use GTK::MenuItem;
   use GTK::Statusbar;
 
+  use GTK::Compat::Roles::ActionMap;
+
+  also does GTK::Compat::Roles::ActionMap;
   also does GTK::Compat::Roles::Object;
 
   has AmtkApplicationWindow $!aaw;
 
   submethod BUILD (:$window) {
     self!setObject($!aaw = $window);
+    $!actmap = nativecast(GActionMap, $!aaw);   # GTK::Compat::Roles::ActionMap
   }
 
   # Conflict allowed due to compatibility
@@ -365,9 +375,9 @@ class AMTK::Factory {
   multi method new (GtkApplication() $application) {
     self.bless( factory => amtk_factory_new($application) );
   }
-
-  method new_with_default_application {
-    self.bless( factory => amtk_factory_new_with_default_application );
+  multi method new {
+    my $factory = amtk_factory_new_with_default_application;
+    self.bless(:$factory);
   }
 
   method default_flags is rw {
@@ -507,6 +517,10 @@ class AMTK::Factory {
 # CLASS OBJECT
 class AMTK::MenuItem {
 
+  method new(|) {
+    die "{ ::?CLASS.^name } cannot be instantiated!";
+  }
+
   method get_long_description (GtkMenuItem() $menu_item) {
     amtk_menu_item_get_long_description($menu_item);
   }
@@ -581,6 +595,10 @@ class AMTK::MenuShell {
 
 class AMTK::GMenu {
 
+  method new(|) {
+    die "{ ::?CLASS.^name } cannot be instantiated!";
+  }
+
   method append_item (GMenu() $menu, GMenuItem() $item) {
     amtk_gmenu_append_item($menu, $item);
   }
@@ -593,33 +611,73 @@ class AMTK::GMenu {
 
 # CLASS OBJECT
 
-class AMTK::Shortcuts {
+class AMTK::ShortcutsGroup {
   use GTK::ShortcutsGroup;
-  use GTK::ShortcutsSection;
-  use GTK::ShortcutsWindow;
 
-  method amtk_shortcuts_group_new (Str() $title) {
+  proto method new (|) { * }
+
+  multi method new (Str() $title) {
     GTK::ShortcutsGroup.new(
       amtk_shortcuts_group_new($title)
     )
   }
+}
 
-  method amtk_shortcuts_section_new (Str() $title) {
+# CLASS OBJECT
+
+class AMTK::ShortcutsSection {
+  use GTK::ShortcutsSection;
+
+  proto method new (|) { * }
+
+  multi method new (Str() $title) {
     GTK::ShortcutsSection.new(
       amtk_shortcuts_section_new($title)
     )
   }
+}
 
-  method amtk_shortcuts_window_new (GtkWindow() $parent) {
+# CLASS OBJECT
+
+class AMTK::ShortcutsWindow {
+  use GTK::ShortcutsWindow;
+
+  proto method new (|) { * }
+
+  multi method new (GtkWindow() $parent) {
     GTK::ShortcutsWindow.new(
       amtk_shortcuts_window_new($parent)
     );
   }
-
 }
 
 # CLASS OBJECT
+
+class AMTK::Shortcuts {
+  method new_group (Str() $g) {
+    AMTK::ShortcutsGroup.new($g);
+  }
+
+  method new_section (Str() $t) {
+    AMTK::ShortcutsSection.new($t);
+  }
+
+  method new_window (GtkWindow() $p) {
+    AMTK::ShortcutsWindow.new($p);
+  }
+
+  method new(|) {
+    die "{ ::?CLASS.^name } cannot be instantiated!";
+  }
+}
+
+
+# CLASS OBJECT
 class AMTK::Utils {
+
+  method new(|) {
+    die "{ ::?CLASS.^name } cannot be instantiated!";
+  }
 
   method bind_g_action_to_gtk_action (|) is DEPRECATED {
     die 'This methd is not implemented due to the deprecation of GTK::Action';
@@ -727,9 +785,9 @@ class AMTK::ActionInfoStore {
   }
 
   method lookup (Str() $action_name) {
-    say "Looking up action: { $action_name }...";
+    say "Looking up action: { $action_name }..." if $DEBUG;;
     my $info = amtk_action_info_store_lookup($!ais, $action_name);
-    say "ActionInfo: $info";
+    say "ActionInfo: $info" if $DEBUG;
     AMTK::ActionInfo.new($info);
   }
 
