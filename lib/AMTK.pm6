@@ -77,8 +77,8 @@ class AMTK::ActionInfo {
 
   method icon_name is rw {
     Proxy.new:
-      STORE => -> $, Str() $v { self.set_icon_name($v) };
       FETCH => -> $           { self.get_icon_name     },
+      STORE => -> $, Str() $v { self.set_icon_name($v) };
   }
 
   method label is rw {
@@ -200,14 +200,13 @@ class AMTK::ActionInfoCentralStore {
 
   method lookup (AMTK::ActionInfoCentralStore:D: Str() $action_name) {
     say "{ ::?CLASS.^name }: Looking up action { $action_name }..." if $DEBUG;
-    my $l = AMTK::ActionInfo.new(
-      amtk_action_info_central_store_lookup(
-        $singleton,
-        $action_name
-      )
+    my $l = amtk_action_info_central_store_lookup(
+      $singleton,
+      $action_name
     );
+    my $lo = $l.defined ?? AMTK::ActionInfo.new($l) !! Nil;
     say "{ ::?CLASS.^name }: Result: $l" if $DEBUG;
-    $l
+    $lo
   }
 
 }
@@ -499,7 +498,8 @@ class AMTK::Factory {
   # ↑↑↑↑ Return objects here!
 
   method get_application {
-    GTK::Application.new( amtk_factory_get_application($!af) );
+    my $a = amtk_factory_get_application($!af);
+    $a.defined ?? GTK::Application.new($a) !! Nil;
   }
 
   method get_default_flags {
@@ -792,7 +792,7 @@ class AMTK::ActionInfoStore {
     say "Looking up action: { $action_name }..." if $DEBUG;;
     my $info = amtk_action_info_store_lookup($!ais, $action_name);
     say "ActionInfo: $info" if $DEBUG;
-    AMTK::ActionInfo.new($info);
+    $info.defined ?? AMTK::ActionInfo.new($info) !! Nil;
   }
 
   method set_all_accels_to_app (GtkApplication() $application) {
