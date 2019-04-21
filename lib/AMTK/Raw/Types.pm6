@@ -24,6 +24,12 @@ class AmtkActionInfoEntry is repr('CStruct') is export {
 	has Str $!accel;
 	has Str $!tooltip;
 
+	# Padding. No access allowed..
+	has uint64 $!padding1;
+	has uint64 $!padding2;
+	has uint64 $!padding3;
+
+
 	method action_name is rw {
 		Proxy.new:
 			FETCH => -> $ { $!action_name },

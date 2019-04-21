@@ -458,8 +458,12 @@ class AMTK::Factory {
     );
   }
 
-  method create_simple_menu (
-    AmtkActionInfoEntry() $entries,
+  multi method create_simple_menu (@entries) {
+    my $e = AMTK::ActionInfoEntryBlock.new(@entries);
+    samewith($e, $e.elems);
+  }
+  multi method create_simple_menu (
+    AmtkActionInfoEntry() $entries,             # BLOCK of AmtkActionInfoEntry
     Int() $n_entries
   ) {
     my gint $n = resolve-int($n_entries);
