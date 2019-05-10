@@ -1,0 +1,33 @@
+{
+  "name": "p6-GooCanvas",
+  "description": "Bindings for GNOME's AMTK library for Perl6",
+  "version": "0.01",
+  "perl": "6.*",
+  "auth": "clifton.wood@gmail.com",
+  "depends": [
+    "p6-GtkPlus"
+  ],
+  "build-depends": [],
+  "test-depends": [],
+  "provides": {
+      "AMTK::Raw::Types"     :  "lib/AMTK/Raw/Types.pm6"     ,
+      "AMTK::Raw::Subs"      :  "lib/AMTK/Raw/Subs.pm6"      ,
+      "AMTK::Roles::Signals" :  "lib/AMTK/Roles/Signals.pm6" ,
+      "AMTK::TypedBlocks"    :  "lib/AMTK/TypedBlocks.pm6"   ,
+      "AMTK"                 :  "lib/AMTK.pm6"               
+    },
+  "resources": [],
+  "license": "Write me!",
+  "source-url": "https://github.com/Xliff/p6-AMTK.git"
+}
+
+
+
+
+
+
+
+
+
+
+

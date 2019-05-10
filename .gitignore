@@ -1,0 +1,6 @@
+.precomp
+scripts/
+scripts.old/
+*.bak
+*.bump
+

@@ -1,0 +1,12 @@
+GTK::Compat::Roles::Object
+GTK::Compat::Roles::TypedBuffer
+GTK::Compat::Types
+GTK::Raw::Types
+GTK::Raw::Utils
+GTK::Roles::Pointers
+Method::Also
+AMTK::Raw::Types
+AMTK::Raw::Subs
+AMTK::Roles::Signals
+AMTK::TypedBlocks
+AMTK
