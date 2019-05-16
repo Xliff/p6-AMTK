@@ -139,7 +139,11 @@ class AMTK::ActionInfo {
     amtk_action_info_ref($!i);
   }
 
-  multi method set_accels (@accels) is also<set-accels> {
+  proto method set_accels (|)
+    is also<set-accels>
+  { * }
+
+  multi method set_accels (@accels) {
     die 'Must be an array of string compatible objects.'
       unless @accels.grep({ $_.^can('Str').elems }).elems == @accels.elems;
     my $a = CArray[Str].new;
@@ -147,7 +151,7 @@ class AMTK::ActionInfo {
     $a[@accels.elems] = Str;
     samewith($a);
   }
-  multi method set_accels (CArray[Str] $accels) is also<set-accels> {
+  multi method set_accels (CArray[Str] $accels) {
     amtk_action_info_set_accels($!i, $accels);
   }
 
@@ -220,17 +224,19 @@ class AMTK::ActionInfoCentralStore {
 class AMTK::ActionMap {
 
   method new(|) {
-    wwarn "{ ::?CLASS.^name } cannot be instantiated!";
+    warn "{ ::?CLASS.^name } cannot be instantiated!";
     AMTK::ActionMap;
   }
+
+  proto method acc_action_entries_check_dups
+    is also<add-action-entries-check-dups>
+  { * }
 
   multi method add_action_entries_check_dups(
     GActionMap() $action_map,
     @entries,
     gpointer $user_data = gpointer
-  )
-    is also<add-action-entries-check-dups>
-  {
+  ) {
     my $e = AMTK::GActionEntryBlock.new(@entries);
     samewith($action_map, $e.p, $e.elems, $user_data)
   }
@@ -239,9 +245,7 @@ class AMTK::ActionMap {
     Pointer $entries,                       # BLOCK of GActionEntry
     Int() $n_entries,
     gpointer $user_data = gpointer
-  )
-    is also<add-action-entries-check-dups>
-  {
+  ) {
     my gint $ne = resolve-int($n_entries);
     amtk_action_map_add_action_entries_check_dups(
       $action_map,
@@ -487,16 +491,18 @@ class AMTK::Factory {
     );
   }
 
-  multi method create_simple_menu (@entries) is also<create-simple-menu> {
+  proto method create_simple_menu (|)
+    is also<create-simple-menu>
+  { * }
+
+  multi method create_simple_menu (@entries)  {
     my $e = AMTK::ActionInfoEntryBlock.new(@entries);
     samewith($e, $e.elems);
   }
   multi method create_simple_menu (
     AmtkActionInfoEntry() $entries,             # BLOCK of AmtkActionInfoEntry
     Int() $n_entries
-  )
-    is also<create-simple-menu>
-  {
+  ) {
     my gint $n = resolve-int($n_entries);
     GTK::Menu.new(
       amtk_factory_create_simple_menu($!af, $entries, $n)
@@ -816,12 +822,14 @@ class AMTK::ActionInfoStore {
     amtk_action_info_store_add($!ais, $info);
   }
 
+  proto method add_entries (|)
+    is also<add-entries>
+  { * }
+
   multi method add_entries(
     @entries,
     Str() $translation_domain = Str
-  )
-    is also<add-entries>
-  {
+  ) {
     my $b = AMTK::ActionInfoEntryBlock.new(@entries);
     samewith($b, $b.elems, $translation_domain);
   }
@@ -829,9 +837,7 @@ class AMTK::ActionInfoStore {
     Pointer() $entries,
     Int()     $n_entries,
     Str()     $translation_domain = Str
-  )
-    is also<add-entries>
-  {
+  ) {
     my gint $n = resolve-int($n_entries);
     amtk_action_info_store_add_entries(
       $!ais,

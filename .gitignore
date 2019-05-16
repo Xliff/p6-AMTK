@@ -1,6 +1,7 @@
 .precomp
 scripts/
-scripts.old/
+scripts.old*/
 *.bak
 *.bump
-
+LastBuildResults
+LastBuildResults.*

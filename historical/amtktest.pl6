@@ -6,7 +6,7 @@ use GTK::Compat::Types;
 use AMTK::Roles::TypedBuffer;
 
 sub printActionEntries(Pointer, uint32)
-  is native('./amtktest')
+  is native('historical/amtktest')
   { * }
 
 sub MAIN {

@@ -10,16 +10,22 @@
   "build-depends": [],
   "test-depends": [],
   "provides": {
-      "AMTK::Raw::Types"     :  "lib/AMTK/Raw/Types.pm6"     ,
-      "AMTK::Raw::Subs"      :  "lib/AMTK/Raw/Subs.pm6"      ,
-      "AMTK::Roles::Signals" :  "lib/AMTK/Roles/Signals.pm6" ,
-      "AMTK::TypedBlocks"    :  "lib/AMTK/TypedBlocks.pm6"   ,
-      "AMTK"                 :  "lib/AMTK.pm6"               
+      "AMTK::Raw::Types"         :  "lib/AMTK/Raw/Types.pm6"         ,
+      "AMTK::Raw::Subs"          :  "lib/AMTK/Raw/Subs.pm6"          ,
+      "AMTK::Roles::Signals"     :  "lib/AMTK/Roles/Signals.pm6"     ,
+      "AMTK::Roles::TypedBuffer" :  "lib/AMTK/Roles/TypedBuffer.pm6" ,
+      "AMTK::TypedBlocks"        :  "lib/AMTK/TypedBlocks.pm6"       ,
+      "AMTK"                     :  "lib/AMTK.pm6"                   
     },
   "resources": [],
   "license": "Write me!",
   "source-url": "https://github.com/Xliff/p6-AMTK.git"
 }
+
+
+
+
+
 
 
 

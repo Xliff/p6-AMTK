@@ -6,7 +6,7 @@ else
   perl6 scripts/backup_results.pl6
 fi
 echo -e "Dependency Generation\n=====================" >> LastBuildResults
-/usr/bin/time -p -o LastBuildResults -a perl6 scripts/dependencies.pl6
+/usr/bin/time -p -o LastBuildResults -a perl6 scripts/dependencies.pl6 --prefix=AMTK
 /usr/bin/time -p /bin/bash -c '(
   for a in `cat BuildList`; do
     (

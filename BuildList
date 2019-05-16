@@ -8,5 +8,6 @@ Method::Also
 AMTK::Raw::Types
 AMTK::Raw::Subs
 AMTK::Roles::Signals
+AMTK::Roles::TypedBuffer
 AMTK::TypedBlocks
 AMTK
