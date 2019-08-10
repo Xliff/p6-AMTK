@@ -1,0 +1,157 @@
+{
+  "AMTK::TypedBlocks": {
+    "mbc": 0e0,
+    "moar": 0e0,
+    "start": 0e0,
+    "mast": 0.003e0,
+    "parse": 1.306e0,
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0
+  },
+  "AMTK::Raw::Types": {
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "mast": 0.003e0,
+    "parse": 1.443e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "moar": 0e0
+  },
+  "GTK::Compat::Types": {
+    "start": 0e0,
+    "mast": 0.008e0,
+    "parse": 0.705e0,
+    "ast": 0e0,
+    "optimize": 0.003e0,
+    "syntaxcheck": 0e0,
+    "mbc": 0.003e0,
+    "moar": 0e0
+  },
+  "GTK::Compat::Roles::TypedBuffer": {
+    "mast": 0.001e0,
+    "parse": 0.734e0,
+    "start": 0e0,
+    "ast": 0e0,
+    "optimize": 0e0,
+    "syntaxcheck": 0e0,
+    "mbc": 0e0,
+    "moar": 0e0
+  },
+  "tainted": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "DEPENDENCIES": {
+    "real": 0.4e0,
+    "sys": 0.04e0,
+    "user": 0.62e0
+  },
+  "GTK::Compat::Roles::Object": {
+    "moar": 0e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "mast": 0.001e0,
+    "parse": 0.809e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0e0,
+    "ast": 0e0
+  },
+  "GTK::Raw::Types": {
+    "moar": 0e0,
+    "mbc": 0.002e0,
+    "mast": 0.007e0,
+    "parse": 0.784e0,
+    "start": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.003e0,
+    "ast": 0e0
+  },
+  "SUMMARY": {
+    "real": 53.12e0,
+    "sys": 1.73e0,
+    "user": 59.4e0
+  },
+  "AMTK::Roles::Signals": {
+    "moar": 0e0,
+    "mbc": 0e0,
+    "mast": 0.003e0,
+    "parse": 1.613e0,
+    "start": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0
+  },
+  "AMTK::Roles::TypedBuffer": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "mast": 0.003e0,
+    "parse": 1.479e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "moar": 0e0
+  },
+  "AMTK": {
+    "moar": 0e0,
+    "mbc": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "mast": 0.003e0,
+    "start": 0e0,
+    "parse": 37.189e0
+  },
+  "Method::Also": {
+    "moar": 0e0,
+    "mbc": 0e0,
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "start": 0e0,
+    "mast": 0.003e0,
+    "parse": 0.554e0
+  },
+  "GTK::Roles::Pointers": {
+    "moar": 0e0,
+    "mbc": 0e0,
+    "ast": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0e0,
+    "start": 0e0,
+    "mast": 0.001e0,
+    "parse": 0.622e0
+  },
+  "GTK::Raw::Utils": {
+    "parse": 0.696e0,
+    "mast": 0.001e0,
+    "start": 0e0,
+    "optimize": 0e0,
+    "syntaxcheck": 0e0,
+    "ast": 0e0,
+    "mbc": 0e0,
+    "moar": 0e0
+  },
+  "AMTK::Raw::Subs": {
+    "moar": 0e0,
+    "mbc": 0.001e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "ast": 0e0,
+    "start": 0e0,
+    "mast": 0.003e0,
+    "parse": 4.54e0
+  }
+}
