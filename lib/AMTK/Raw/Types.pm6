@@ -6,6 +6,9 @@ use GTK::Roles::Pointers;
 
 unit package AMTK::Raw::Types;
 
+# Number of forced compiles made
+constant forced = 2;
+
 constant amtk is export = 'amtk-5',v0;
 
 class AmtkActionInfo             is repr('CPointer') is export does GTK::Roles::Pointers { }
