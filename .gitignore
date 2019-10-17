@@ -5,3 +5,4 @@ scripts.old*/
 *.bump
 LastBuildResults
 LastBuildResults.*
+*.old
