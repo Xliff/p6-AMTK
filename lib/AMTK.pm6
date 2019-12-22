@@ -11,16 +11,17 @@ use GTK::Raw::Utils;
 
 use AMTK::Raw::Subs;
 
+use GLib::Roles::StaticClass;
+
 use GTK::Compat::Roles::Object;
 use AMTK::Roles::Signals;
 use AMTK::Roles::TypedBuffer;
 
+#----- RE-REFINE!!! ----
+
 # CLASS OBJECT
 class AMTK::Main {
-
-  method new(|) {
-    die "{ ::?CLASS.^name } cannot be instantiated!";
-  }
+  also does GLib::Roles::StaticClass;
 
   method finalize {
     amtk_finalize;
@@ -29,7 +30,6 @@ class AMTK::Main {
   method init {
     amtk_init;
   }
-
 }
 
 # BOXED TYPE
@@ -186,7 +186,7 @@ class AMTK::ActionInfoCentralStore {
   }
 
   method AMTK::Raw::Types::ActionInfoCentralStore
-    #is also<ActionInfoCentralStore>
+    is also<AmtkActionInfoCentralStore>
   { $singleton }
 
   method get_singleton (AMTK::ActionInfoCentralStore:U: )
@@ -199,6 +199,7 @@ class AMTK::ActionInfoCentralStore {
 
   method get_type is also<get-type> {
     state ($n, $t);
+
     unstable_get_type(
       self.^name,
       &amtk_action_info_central_store_get_type,
@@ -222,11 +223,7 @@ class AMTK::ActionInfoCentralStore {
 
 # CLASS OBJECT
 class AMTK::ActionMap {
-
-  method new(|) {
-    warn "{ ::?CLASS.^name } cannot be instantiated!";
-    AMTK::ActionMap;
-  }
+  also does GLib::Roles::StaticClass;
 
   proto method acc_action_entries_check_dups
     is also<add-action-entries-check-dups>
@@ -238,6 +235,7 @@ class AMTK::ActionMap {
     gpointer $user_data = gpointer
   ) {
     my $e = AMTK::GActionEntryBlock.new(@entries);
+
     samewith($action_map, $e.p, $e.elems, $user_data)
   }
   multi method add_action_entries_check_dups (
@@ -246,7 +244,8 @@ class AMTK::ActionMap {
     Int() $n_entries,
     gpointer $user_data = gpointer
   ) {
-    my gint $ne = resolve-int($n_entries);
+    my gint $ne = $n_entries;
+
     amtk_action_map_add_action_entries_check_dups(
       $action_map,
       $entries,
@@ -259,6 +258,9 @@ class AMTK::ActionMap {
 
 # GObject
 
+our subset AmtkApplicationWindowAncestry is export of Mu
+  where AmtkApplicationWindow | GActionMap | GObject;
+
 class AMTK::ApplicationWindow {
   use GTK::Application;
   use GTK::MenuItem;
@@ -266,24 +268,57 @@ class AMTK::ApplicationWindow {
   use GTK::MenuItem;
   use GTK::Statusbar;
 
-  use GTK::Compat::Roles::ActionMap;
+  use GIO::Roles::ActionMap;
 
-  also does GTK::Compat::Roles::ActionMap;
+  also does GIO::Roles::ActionMap;
   also does GTK::Compat::Roles::Object;
 
-  has AmtkApplicationWindow $!aaw;
+  has AmtkApplicationWindow $!aaw is implementor;
 
+  # Should have ancestry logic to account for GObject and GActionMap
   submethod BUILD (:$window) {
-    self!setObject($!aaw = $window);
-    $!actmap = nativecast(GActionMap, $!aaw);   # GTK::Compat::Roles::ActionMap
+    given $window {
+      when AmtkApplicationWindowAncestry {
+        self.setAmtkApplicationWindow($window);
+      }
+
+      when AMTK::ApplicationWindow {
+      }
+
+      default {
+      }
+    }
   }
 
-  # Conflict allowed due to compatibility
+  method setAmtkApplicationWindow (AmtkApplicationWindowAncestry $_) {
+    my $to-parent;
+
+    $!aaw = do {
+      when AmtkApplicationWindow {
+        $_;
+      }
+
+      when GActionMap {
+        $!actmap = $_;
+        cast(AmtkApplicationWindow, $_);
+      }
+
+      default {
+        cast(AmtkApplicationWindow, $_);
+      }
+    };
+
+    self.roleInit-Object
+    self.roleInit-ActionMap unless $!actmap;
+  }
+
   method AMTK::Raw::Types::AmtkApplicationWindow
-    #is also<ApplicationWindow>
+    is also<AmtkApplicationWindow>
   { $!aaw }
 
   multi method new (AmtkApplicationWindow $window) {
+    return unless $window;
+
     self.bless(:$window);
   }
 
@@ -292,11 +327,10 @@ class AMTK::ApplicationWindow {
   )
     is also<get-from-gtk-application-window>
   {
-    self.bless(
-      window => amtk_application_window_get_from_gtk_application_window(
-        $gtk_window
-      )
-    );
+    my $aw =
+      amtk_application_window_get_from_gtk_application_window($gtk_window);
+
+    $aw ?? self.bless( window => $aw ) !! Nil;
   }
 
   method statusbar is rw {
@@ -420,7 +454,7 @@ class AMTK::Factory {
   )
     is also<create-check-menu-item-full>
   {
-    my guint $f = resolve-uint($flags);
+    my guint $f = $flags;
     GTK::CheckMenuItem.new(
       amtk_factory_create_check_menu_item_full($!af, $action_name, $f)
     );
@@ -438,7 +472,7 @@ class AMTK::Factory {
   )
     is also<create-gmenu-item-full>
   {
-    my guint $f = resolve-uint($flags);
+    my guint $f = $flags;
     GTK::Compat::MenuItem.new(
       amtk_factory_create_gmenu_item_full($!af, $action_name, $f)
     );
@@ -453,7 +487,7 @@ class AMTK::Factory {
   method create_menu_item_full (Str() $action_name, Int() $flags)
     is also<create-menu-item-full>
   {
-    my guint $f = resolve-uint($flags);
+    my guint $f = $flags;
     GTK::MenuItem.new(
       amtk_factory_create_menu_item_full($!af, $action_name, $f)
     );
@@ -470,7 +504,7 @@ class AMTK::Factory {
   method create_menu_tool_button_full (Str() $action_name, Int() $flags)
     is also<create-menu-tool-button-full>
   {
-    my guint $f = resolve-uint($flags);
+    my guint $f = $flags;
     GTK::MenuToolButton.new(
       amtk_factory_create_menu_tool_button_full($!af, $action_name, $f)
     );
@@ -485,7 +519,7 @@ class AMTK::Factory {
   method create_shortcut_full (Str() $action_name, Int() $flags)
     is also<create-shortcut-full>
   {
-    my guint $f = resolve-uint($flags);
+    my guint $f = $flags;
     GTK::ShortcutsShortcut.new(
       amtk_factory_create_shortcut_full($!af, $action_name, $f)
     );
@@ -503,7 +537,7 @@ class AMTK::Factory {
     AmtkActionInfoEntry() $entries,             # BLOCK of AmtkActionInfoEntry
     Int() $n_entries
   ) {
-    my gint $n = resolve-int($n_entries);
+    my gint $n = $n_entries;
     GTK::Menu.new(
       amtk_factory_create_simple_menu($!af, $entries, $n)
     );
@@ -516,8 +550,8 @@ class AMTK::Factory {
   )
     is also<create-simple-menu-full>
   {
-    my guint $f = resolve-uint($flags);
-    my gint $n = resolve-int($n_entries);
+    my guint $f = $flags;
+    my gint $n = $n_entries;
     GTK::Menu.new(
       amtk_factory_create_simple_menu_full($!af, $entries, $n, $f)
     );
@@ -532,7 +566,7 @@ class AMTK::Factory {
   method create_tool_button_full (Str() $action_name, Int() $flags)
     is also<create-tool-button-full>
   {
-    my guint $f = resolve-uint($flags);
+    my guint $f = $flags;
     GTK::ToolButton.new(
       amtk_factory_create_tool_button_full($!af, $action_name, $f)
     );
@@ -554,7 +588,7 @@ class AMTK::Factory {
   }
 
   method set_default_flags (Int() $default_flags) is also<set-default-flags> {
-    my guint $d = resolve-uint($default_flags);
+    my guint $d = $default_flags;
     amtk_factory_set_default_flags($!af, $d);
   }
 
@@ -733,11 +767,7 @@ class AMTK::Shortcuts {
 
 # CLASS OBJECT
 class AMTK::Utils {
-
-  method new(|) {
-    warn "{ ::?CLASS.^name } cannot be instantiated!";
-    AMTK::Utils;
-  }
+  also does GLib::Roles::StaticClass;
 
   method bind_g_action_to_gtk_action (|)
     is DEPRECATED
@@ -838,7 +868,7 @@ class AMTK::ActionInfoStore {
     Int()     $n_entries,
     Str()     $translation_domain = Str
   ) {
-    my gint $n = resolve-int($n_entries);
+    my gint $n = $n_entries;
     amtk_action_info_store_add_entries(
       $!ais,
       $entries,
