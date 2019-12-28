@@ -1,5 +1,6 @@
+GLib::Roles::StaticClass
+GLib::Roles::TypedBuffer
 GTK::Compat::Roles::Object
-GTK::Compat::Roles::TypedBuffer
 GTK::Compat::Types
 GTK::Raw::Types
 GTK::Raw::Utils

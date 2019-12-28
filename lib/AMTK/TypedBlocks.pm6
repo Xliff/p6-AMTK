@@ -8,10 +8,10 @@ use AMTK::Raw::Types;
 
 use GTK::Raw::Utils;
 
-use GTK::Compat::Roles::TypedBuffer;
+use GLib::Roles::TypedBuffer;
 
 class AMTK::ActionInfoEntryBlock {
-  also does GTK::Compat::Roles::TypedBuffer[AmtkActionInfoEntry];
+  also does GLib::Roles::TypedBuffer[AmtkActionInfoEntry];
 
   method AMTK::Raw::Types::AmtkActionInfoEntry {
     nativecast(AmtkActionInfoEntry, $!b);
@@ -20,7 +20,7 @@ class AMTK::ActionInfoEntryBlock {
 }
 
 class AMTK::GActionEntryBlock {
-  also does GTK::Compat::Roles::TypedBuffer[GActionEntry];
+  also does GLib::Roles::TypedBuffer[GActionEntry];
 
   method GTK::Compat::Raw::GActionEntry {
     nativecast(GActionEntry, $!b);
