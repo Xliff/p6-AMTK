@@ -13,7 +13,7 @@ use AMTK::Raw::Subs;
 
 use GLib::Roles::StaticClass;
 
-use GTK::Compat::Roles::Object;
+use GLib::Roles::Object;
 use AMTK::Roles::Signals;
 use AMTK::Roles::TypedBuffer;
 
@@ -271,7 +271,7 @@ class AMTK::ApplicationWindow {
   use GIO::Roles::ActionMap;
 
   also does GIO::Roles::ActionMap;
-  also does GTK::Compat::Roles::Object;
+  also does GLib::Roles::Object;
 
   has AmtkApplicationWindow $!aaw is implementor;
 
@@ -308,7 +308,7 @@ class AMTK::ApplicationWindow {
       }
     };
 
-    self.roleInit-Object
+    self.roleInit-Object;
     self.roleInit-ActionMap unless $!actmap;
   }
 
@@ -401,7 +401,7 @@ class AMTK::ApplicationWindow {
 # GObject
 
 class AMTK::Factory {
-  use GTK::Compat::MenuItem;
+  use GIO::MenuItem;
   use GTK::Application;
   use GTK::CheckMenuItem;
   use GTK::Menu;
@@ -410,7 +410,7 @@ class AMTK::Factory {
   use GTK::ToolItem;
   use GTK::ShortcutsShortcut;
 
-  also does GTK::Compat::Roles::Object;
+  also does GLib::Roles::Object;
 
   has AmtkFactory $!af;
 
@@ -461,7 +461,7 @@ class AMTK::Factory {
   }
 
   method create_gmenu_item (Str() $action_name) is also<create-gmenu-item> {
-    GTK::Compat::MenuItem.new(
+    GIO::MenuItem.new(
       amtk_factory_create_gmenu_item($!af, $action_name)
     );
   }
@@ -473,7 +473,7 @@ class AMTK::Factory {
     is also<create-gmenu-item-full>
   {
     my guint $f = $flags;
-    GTK::Compat::MenuItem.new(
+    GIO::MenuItem.new(
       amtk_factory_create_gmenu_item_full($!af, $action_name, $f)
     );
   }
@@ -629,7 +629,7 @@ class AMTK::MenuItem {
 # GObject
 
 class AMTK::MenuShell {
-  also does GTK::Compat::Roles::Object;
+  also does GLib::Roles::Object;
   also does AMTK::Roles::Signals::MenuShell;
 
   has AmtkMenuShell $!ams;
@@ -826,7 +826,7 @@ class AMTK::Utils {
 # GObject
 
 class AMTK::ActionInfoStore {
-  also does GTK::Compat::Roles::Object;
+  also does GLib::Roles::Object;
 
   has AmtkActionInfoStore $!ais;
 
