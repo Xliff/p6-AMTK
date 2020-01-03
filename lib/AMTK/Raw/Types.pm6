@@ -2,7 +2,7 @@ use v6.c;
 
 use NativeCall;
 
-use GTK::Roles::Pointers;
+use GLib::Roles::Pointers;
 
 unit package AMTK::Raw::Types;
 
@@ -11,12 +11,12 @@ constant forced = 2;
 
 constant amtk is export = 'amtk-5',v0;
 
-class AmtkActionInfo             is repr('CPointer') is export does GTK::Roles::Pointers { }
-class AmtkActionInfoCentralStore is repr('CPointer') is export does GTK::Roles::Pointers { }
-class AmtkActionInfoStore        is repr('CPointer') is export does GTK::Roles::Pointers { }
-class AmtkApplicationWindow      is repr('CPointer') is export does GTK::Roles::Pointers { }
-class AmtkFactory                is repr('CPointer') is export does GTK::Roles::Pointers { }
-class AmtkMenuShell              is repr('CPointer') is export does GTK::Roles::Pointers { }
+class AmtkActionInfo             is repr('CPointer') is export does GLib::Roles::Pointers { }
+class AmtkActionInfoCentralStore is repr('CPointer') is export does GLib::Roles::Pointers { }
+class AmtkActionInfoStore        is repr('CPointer') is export does GLib::Roles::Pointers { }
+class AmtkApplicationWindow      is repr('CPointer') is export does GLib::Roles::Pointers { }
+class AmtkFactory                is repr('CPointer') is export does GLib::Roles::Pointers { }
+class AmtkMenuShell              is repr('CPointer') is export does GLib::Roles::Pointers { }
 
 class AmtkActionInfoEntry is repr('CStruct') is export {
 	use nqp;
