@@ -4,8 +4,9 @@ use Method::Also;
 use NativeCall;
 
 use AMTK::Raw::Types;
-
 use AMTK::Raw::Subs;
+
+use AMTK::TypedBlocks;
 
 use GLib::Roles::StaticClass;
 use GLib::Roles::Object;
@@ -33,7 +34,7 @@ class AMTK::ActionInfo {
     $!i = $info;
   }
 
-  method AMTK::Raw::Definitions::AmtkActionInfo
+  method AMTK::Raw::Types::AmtkActionInfo
     is also<AmtkActionInfo>
   { $!i }
 
@@ -791,7 +792,7 @@ class AMTK::GMenu {
 # CLASS OBJECT
 
 class AMTK::ShortcutsGroup {
-  #use GTK::ShortcutsGroup;
+  use GTK::ShortcutsGroup;
 
   proto method new (|) { * }
 
