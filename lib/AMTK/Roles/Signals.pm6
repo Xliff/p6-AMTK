@@ -2,13 +2,11 @@ use v6.c;
 
 use NativeCall;
 
-use GTK::Compat::Types;
-use GTK::Raw::Types;
 use AMTK::Raw::Types;
 
 role AMTK::Roles::Signals::MenuShell {
   has %!signals-ams;
-  
+
   # AmtkMenuShell, GtkMenuItem, gpointer
   method connect-menu-item-deselected (
     $obj,
