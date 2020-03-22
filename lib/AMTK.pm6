@@ -3,21 +3,13 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-use GTK::Compat::Types;
-use GTK::Raw::Types;
 use AMTK::Raw::Types;
-
-use GTK::Raw::Utils;
 
 use AMTK::Raw::Subs;
 
 use GLib::Roles::StaticClass;
-
 use GLib::Roles::Object;
 use AMTK::Roles::Signals;
-use AMTK::Roles::TypedBuffer;
-
-#----- RE-REFINE!!! ----
 
 # CLASS OBJECT
 class AMTK::Main {
@@ -41,70 +33,71 @@ class AMTK::ActionInfo {
     $!i = $info;
   }
 
-  method AMTK::Raw::Types::AmtkActionInfo
-    #is also<ActionInfo>
+  method AMTK::Raw::Definitions::AmtkActionInfo
+    is also<AmtkActionInfo>
   { $!i }
 
   multi method new (AmtkActionInfo $info) {
-    self.bless(:$info);
+    $info ?? self.bless(:$info) !! AmtkActionInfo;
   }
   multi method new {
-    self.bless( info => amtk_action_info_new() );
+    my $info = amtk_action_info_new();
+
+    $info ?? self.bless(:$info) !! AmtkActionInfo;
   }
 
   method new_from_entry (
     AmtkActionInfoEntry $info_entry,
-    Str() $translation_domain = Str
+    Str() $trans_domain = Str
   )
     is also<new-from-entry>
   {
-    self.bless(
-      info => amtk_action_info_new_from_entry(
-        $info_entry,
-        $translation_domain
-      )
-    );
+    my $info = amtk_action_info_new_from_entry($info_entry, $trans_domain);
+
+    $info ?? self.bless(:$info) !! AmtkActionInfo;
   }
 
   method accels is rw {
     Proxy.new:
-      FETCH => -> $,          { self.get_accels     },
+      FETCH => sub ($)        { self.get_accels     },
       STORE => -> $, @a       { self.set_accels(@a) };
   }
 
   method action_name is rw is also<action-name> {
     Proxy.new:
-      FETCH => -> $           { self.get_action_name     },
+      FETCH => sub ($)        { self.get_action_name     },
       STORE => -> $, Str() $v { self.set_action_name($v) };
   }
 
   method icon_name is rw is also<icon-name> {
     Proxy.new:
-      FETCH => -> $           { self.get_icon_name     },
+      FETCH => sub ($)        { self.get_icon_name     },
       STORE => -> $, Str() $v { self.set_icon_name($v) };
   }
 
   method label is rw {
     Proxy.new:
-      FETCH => -> $           { self.get_label     },
+      FETCH => sub ($)        { self.get_label     },
       STORE => -> $, Str() $v { self.set_label($v) };
   }
 
   method tooltip is rw {
     Proxy.new:
-      FETCH => -> $           { self.get_tooltip     },
+      FETCH => sub ($)        { self.get_tooltip     },
       STORE => -> $, Str() $v { self.set_tooltip($v) };
   }
 
-  method copy {
-    self.bless( info => amtk_action_info_copy($!i) );
+  method copy (:$raw = False) {
+    my $info = amtk_action_info_copy($!i);
+
+    $info ??
+      ( $raw ?? $info !! AMTK::ActionInfo.new($info) )
+      !!
+      AmtkActionInfo;
   }
 
   method get_accels is also<get-accels> {
-    my ($i, @a) = ( 0 );
-    my CArray[Str] $a = amtk_action_info_get_accels($!i);
-    @a[$i] = $a[$i++] while $a[$i].defined;
-    @a;
+    CStringArrayToArray( amtk_action_info_get_accels($!i) );
   }
 
   method get_action_name is also<get-action-name> {
@@ -124,7 +117,9 @@ class AMTK::ActionInfo {
   }
 
   method get_type is also<get-type> {
-    amtk_action_info_get_type();
+    state ($n, $t);
+
+    unstable_get_type( self.^name, &amtk_action_info_get_type, $n, $t );
   }
 
   method has_been_used is also<has-been-used> {
@@ -135,8 +130,9 @@ class AMTK::ActionInfo {
     amtk_action_info_mark_as_used($!i);
   }
 
-  method ref {
+  method ref is also<upref> {
     amtk_action_info_ref($!i);
+    self;
   }
 
   proto method set_accels (|)
@@ -144,12 +140,13 @@ class AMTK::ActionInfo {
   { * }
 
   multi method set_accels (@accels) {
-    die 'Must be an array of string compatible objects.'
-      unless @accels.grep({ $_.^can('Str').elems }).elems == @accels.elems;
-    my $a = CArray[Str].new;
-    $a[$_] = @accels[$_] for ^@accels;
-    $a[@accels.elems] = Str;
-    samewith($a);
+    @accels = @accels.map({
+      die '@accels must be an array of string compatible objects.'
+         unless ( my $m = .^lookup('Str') );
+      $m($_);
+    });
+
+    samewith( ArrayToCArray(Str, @accels) );
   }
   multi method set_accels (CArray[Str] $accels) {
     amtk_action_info_set_accels($!i, $accels);
@@ -171,7 +168,7 @@ class AMTK::ActionInfo {
     amtk_action_info_set_tooltip($!i, $tooltip);
   }
 
-  method unref {
+  method unref is also<downref> {
     amtk_action_info_unref($!i);
   }
 }
@@ -185,16 +182,16 @@ class AMTK::ActionInfoCentralStore {
     $singleton //= $store;
   }
 
-  method AMTK::Raw::Types::ActionInfoCentralStore
+  method AMTK::Raw::Definitions::AmtkActionInfoCentralStore
     is also<AmtkActionInfoCentralStore>
   { $singleton }
 
   method get_singleton (AMTK::ActionInfoCentralStore:U: )
     is also<get-singleton>
   {
-    self.bless(
-      store => $singleton // amtk_action_info_central_store_get_singleton()
-    );
+    my $store = $singleton // amtk_action_info_central_store_get_singleton();
+
+    $store ?? self.bless( :$store ) !! AmtkActionInfoCentralStore;
   }
 
   method get_type is also<get-type> {
@@ -214,7 +211,8 @@ class AMTK::ActionInfoCentralStore {
       $singleton,
       $action_name
     );
-    my $lo = $l.defined ?? AMTK::ActionInfo.new($l) !! Nil;
+    my $lo = $l.defined ?? AMTK::ActionInfo.new($l) !! AmtkActionInfo;
+
     say "{ ::?CLASS.^name }: Result: $l" if $DEBUG;
     $lo
   }
@@ -242,7 +240,7 @@ class AMTK::ActionMap {
     GActionMap() $action_map,
     Pointer $entries,                       # BLOCK of GActionEntry
     Int() $n_entries,
-    gpointer $user_data = gpointer
+    gpointer $user_data = gpointer,
   ) {
     my gint $ne = $n_entries;
 
@@ -312,12 +310,12 @@ class AMTK::ApplicationWindow {
     self.roleInit-ActionMap unless $!actmap;
   }
 
-  method AMTK::Raw::Types::AmtkApplicationWindow
+  method AMTK::Raw::Definitions::AmtkApplicationWindow
     is also<AmtkApplicationWindow>
   { $!aaw }
 
   multi method new (AmtkApplicationWindow $window) {
-    return unless $window;
+    return AmtkApplicationWindow unless $window;
 
     self.bless(:$window);
   }
@@ -330,12 +328,12 @@ class AMTK::ApplicationWindow {
     my $aw =
       amtk_application_window_get_from_gtk_application_window($gtk_window);
 
-    $aw ?? self.bless( window => $aw ) !! Nil;
+    $aw ?? self.bless( window => $aw ) !! GtkApplicationWindow;
   }
 
   method statusbar is rw {
     Proxy.new:
-      FETCH => -> $                    { self.get_statusbar     },
+      FETCH => sub ($)                 { self.get_statusbar     },
       STORE => -> $, GtkStatusbar() $v { self.set_statusbar($v) };
   }
 
@@ -358,32 +356,52 @@ class AMTK::ApplicationWindow {
     );
   }
 
-  method create_open_recent_menu is also<create-open-recent-menu> {
-    GTK::RecentChooserMenu.new(
-      amtk_application_window_create_open_recent_menu($!aaw)
-    );
+  method create_open_recent_menu (:$raw = False)
+    is also<create-open-recent-menu>
+  {
+    my $rcm = amtk_application_window_create_open_recent_menu($!aaw);
+
+
+    $rcm ??
+      ( $raw ?? $rcm !! GTK::RecentChooserMenu.new($rcm) )
+      !!
+      GtkRecentChooserMenu;
   }
 
-  method create_open_recent_menu_item is also<create-open-recent-menu-item> {
-    GTK::MenuItem.new(
-      amtk_application_window_create_open_recent_menu_item($!aaw)
-    );
+  method create_open_recent_menu_item (:$raw = False )
+    is also<create-open-recent-menu-item>
+  {
+    my $mi = amtk_application_window_create_open_recent_menu_item($!aaw);
+
+    $mi ??
+      ( $raw ?? $mi !! GTK::MenuItem.new($mi) )
+      !!
+      GtkMenuItem;
   }
 
-  method get_application_window is also<get-application-window> {
-    GTK::MenuItem.new(
-      amtk_application_window_get_application_window($!aaw)
-    );
+  method get_application_window (:$raw = False)
+    is also<get-application-window>
+  {
+    my $mi = amtk_application_window_get_application_window($!aaw);
+
+    $mi ??
+      ( $raw ?? $mi !! GTK::MenuItem.new($mi) )
+      !!
+      GtkMenuItem;
   }
 
-  method get_statusbar is also<get-statusbar> {
-    GTK::Statusbar.new(
-      amtk_application_window_get_statusbar($!aaw)
-    );
+  method get_statusbar (:$raw = False) is also<get-statusbar> {
+    my $s = amtk_application_window_get_statusbar($!aaw);
+
+    $s ??
+      ( $raw ?? $s !! GTK::Statusbar.new($s) )
+      !!
+      GtkStatusbar;
   }
 
   method get_type is also<get-type> {
     state ($n, $t);
+
     unstable_get_type(
       self.^name,
       &amtk_application_window_get_type,
@@ -418,177 +436,250 @@ class AMTK::Factory {
     self!setObject($!af = $factory);
   }
 
-  method AMTK::Raw::Types::AmtkFactory
-    #is also<AmtkFactory>
+  method AMTK::Raw::Definitions::AmtkFactory
+    is also<AmtkFactory>
   { $!af }
 
   multi method new (AmtkFactory $factory) {
-    self.bless(:$factory);
+    $factory ?? self.bless(:$factory) !! AmtkFactory;
   }
   multi method new (GtkApplication() $application) {
-    self.bless( factory => amtk_factory_new($application) );
+    my $factory = amtk_factory_new($application);
+
+    $factory ?? self.bless(:$factory) !! AmtkFactory;
   }
   multi method new {
     my $factory = amtk_factory_new_with_default_application;
-    self.bless(:$factory);
+
+    $factory ?? self.bless(:$factory) !! AmtkFactory;
   }
 
   method default_flags is rw is also<default-flags> {
     Proxy.new:
-      FETCH => -> $           { self.get_default_flags },
+      FETCH => sub ($)        { self.get_default_flags },
       STORE => -> $, Int() $f { self.set_default_flags($f) };
   }
 
   # ↓↓↓↓ Return objects here!
-  method create_check_menu_item (Str() $action_name)
+  method create_check_menu_item (Str() $action_name, :$raw = False)
     is also<create-check-menu-item>
   {
-    GTK::CheckMenuItem.new(
-      amtk_factory_create_check_menu_item($!af, $action_name)
-    );
+    my $cmi = amtk_factory_create_check_menu_item($!af, $action_name);
+
+    $cmi ??
+      ( $raw ?? $cmi !! GTK::CheckMenuItem.new($cmi) )
+      !!
+      GtkCheckMenuItem;
   }
 
   method create_check_menu_item_full (
    Str() $action_name,
-   Int() $flags
+   Int() $flags,
+   :$raw = False
   )
     is also<create-check-menu-item-full>
   {
     my guint $f = $flags;
-    GTK::CheckMenuItem.new(
-      amtk_factory_create_check_menu_item_full($!af, $action_name, $f)
-    );
+    my $cmi = amtk_factory_create_check_menu_item_full($!af, $action_name, $f);
+
+    $cmi ??
+      ( $raw ?? $cmi !! GTK::CheckMenuItem.new($cmi) )
+      !!
+      GtkCheckMenuItem;
   }
 
-  method create_gmenu_item (Str() $action_name) is also<create-gmenu-item> {
-    GIO::MenuItem.new(
-      amtk_factory_create_gmenu_item($!af, $action_name)
-    );
+  method create_gmenu_item (Str() $action_name, :$raw = False)
+    is also<create-gmenu-item>
+  {
+    my $mi = amtk_factory_create_gmenu_item($!af, $action_name);
+
+    $mi ??
+      ( $raw ?? $mi !! GIO::MenuItem.new($mi) )
+      !!
+      GMenuItem;
   }
 
   method create_gmenu_item_full (
     Str() $action_name,
-    Int() $flags
+    Int() $flags,
+    :$raw = False
   )
     is also<create-gmenu-item-full>
   {
     my guint $f = $flags;
-    GIO::MenuItem.new(
-      amtk_factory_create_gmenu_item_full($!af, $action_name, $f)
-    );
+    my $mi = amtk_factory_create_gmenu_item_full($!af, $action_name, $f);
+
+    $mi ??
+      ( $raw ?? $mi !! GIO::MenuItem.new($mi) )
+      !!
+      GMenuItem;
   }
 
-  method create_menu_item (Str() $action_name) is also<create-menu-item> {
-    GTK::MenuItem.new(
-      amtk_factory_create_menu_item($!af, $action_name)
-    );
+  method create_menu_item (Str() $action_name, :$raw = False)
+    is also<create-menu-item>
+  {
+    my $mi = amtk_factory_create_menu_item($!af, $action_name);
+
+    $mi ??
+      ( $raw ?? $mi !! GTK::MenuItem.new($mi) )
+      !!
+      GtkMenuItem;
   }
 
-  method create_menu_item_full (Str() $action_name, Int() $flags)
+  method create_menu_item_full (
+    Str() $action_name,
+    Int() $flags,
+    :$raw = False
+  )
     is also<create-menu-item-full>
   {
     my guint $f = $flags;
-    GTK::MenuItem.new(
-      amtk_factory_create_menu_item_full($!af, $action_name, $f)
-    );
+    my $mi = amtk_factory_create_menu_item_full($!af, $action_name, $f);
+
+    $mi ??
+      ( $raw ?? $mi !! GTK::MenuItem.new($mi) )
+      !!
+      GtkMenuItem;
   }
 
-  method create_menu_tool_button (Str() $action_name)
+  method create_menu_tool_button (Str() $action_name, :$raw = False)
     is also<create-menu-tool-button>
   {
-    GTK::MenuToolButton.new(
-      amtk_factory_create_menu_tool_button($!af, $action_name)
-    );
+    my $mtb = amtk_factory_create_menu_tool_button($!af, $action_name);
+
+    $mtb ??
+      ( $raw ?? $mtb !! GTK::MenuToolButton.new($mtb) )
+      !!
+      GtkMenuToolButton;
   }
 
-  method create_menu_tool_button_full (Str() $action_name, Int() $flags)
+  method create_menu_tool_button_full (
+    Str() $action_name,
+    Int() $flags,
+    :$raw = False;
+  )
     is also<create-menu-tool-button-full>
   {
     my guint $f = $flags;
-    GTK::MenuToolButton.new(
-      amtk_factory_create_menu_tool_button_full($!af, $action_name, $f)
-    );
+    my $mtb = amtk_factory_create_menu_tool_button_full($!af, $action_name, $f);
+
+    $mtb ??
+      ( $raw ?? $mtb !! GTK::MenuToolButton.new($mtb) )
+      !!
+      GtkMenuToolButton;
   }
 
-  method create_shortcut (Str() $action_name) is also<create-shortcut> {
-    GTK::ShortcutsShortcut.new(
-      amtk_factory_create_shortcut($!af, $action_name)
-    );
+  method create_shortcut (Str() $action_name, :$raw = False)
+    is also<create-shortcut>
+  {
+    my $ss = amtk_factory_create_shortcut($!af, $action_name);
+
+    $ss ??
+      ( $raw ?? $ss !! GTK::ShortcutsShortcut.new($ss) )
+      !!
+      GtkShortcutsShortcut;
   }
 
-  method create_shortcut_full (Str() $action_name, Int() $flags)
+  method create_shortcut_full (Str() $action_name, Int() $flags, :$raw = False)
     is also<create-shortcut-full>
   {
     my guint $f = $flags;
-    GTK::ShortcutsShortcut.new(
-      amtk_factory_create_shortcut_full($!af, $action_name, $f)
-    );
+    my $ss = amtk_factory_create_shortcut_full($!af, $action_name, $f);
+
+    $ss ??
+      ( $raw ?? $ss !! GTK::ShortcutsShortcut.new($ss) )
+      !!
+      GtkShortcutsShortcut;
   }
 
   proto method create_simple_menu (|)
     is also<create-simple-menu>
   { * }
 
-  multi method create_simple_menu (@entries)  {
-    my $e = AMTK::ActionInfoEntryBlock.new(@entries);
+  multi method create_simple_menu (@entries, :$raw = False)  {
+    my $e = AMTK::ActionInfoEntryBlock.new(@entries, :$raw);
+
     samewith($e, $e.elems);
   }
   multi method create_simple_menu (
     AmtkActionInfoEntry() $entries,             # BLOCK of AmtkActionInfoEntry
-    Int() $n_entries
+    Int() $n_entries,
+    :$raw = False
   ) {
     my gint $n = $n_entries;
-    GTK::Menu.new(
-      amtk_factory_create_simple_menu($!af, $entries, $n)
-    );
+    my $m = amtk_factory_create_simple_menu($!af, $entries, $n);
+
+    $m ??
+      ( $raw ?? $m !! GTK::Menu.new($m) )
+      !!
+      GtkMenu;
   }
 
   method create_simple_menu_full (
     AmtkActionInfoEntry $entries,
     Int() $n_entries,
-    Int() $flags
+    Int() $flags,
+    :$raw = False
   )
     is also<create-simple-menu-full>
   {
     my guint $f = $flags;
     my gint $n = $n_entries;
-    GTK::Menu.new(
-      amtk_factory_create_simple_menu_full($!af, $entries, $n, $f)
-    );
+    my $m = amtk_factory_create_simple_menu_full($!af, $entries, $n, $f);
+
+    $m ??
+      ( $raw ?? $m !! GTK::Menu.new($m) )
+      !!
+      GtkMenu;
   }
 
-  method create_tool_button (Str() $action_name) is also<create-tool-button> {
-    GTK::ToolButton.new(
-      amtk_factory_create_tool_button($!af, $action_name)
-    );
+  method create_tool_button (Str() $action_name, :$raw = False)
+    is also<create-tool-button>
+  {
+    my $tb = amtk_factory_create_tool_button($!af, $action_name);
+
+    $tb ??
+      ( $raw ?? $tb !! GTK::ToolButton.new($tb) )
+      !!
+      GtkToolButton;
   }
 
-  method create_tool_button_full (Str() $action_name, Int() $flags)
+  method create_tool_button_full (
+    Str() $action_name,
+    Int() $flags,
+    :$raw = False
+  )
     is also<create-tool-button-full>
   {
     my guint $f = $flags;
-    GTK::ToolButton.new(
-      amtk_factory_create_tool_button_full($!af, $action_name, $f)
-    );
+    my $tb = amtk_factory_create_tool_button_full($!af, $action_name, $f);
+
+    $tb ??
+      ( $raw ?? $tb !! GTK::ToolButton.new($tb) )
+      !!
+      GtkToolButton;
   }
   # ↑↑↑↑ Return objects here!
 
   method get_application is also<get-application> {
     my $a = amtk_factory_get_application($!af);
-    $a.defined ?? GTK::Application.new($a) !! Nil;
+
+    $a ?? GTK::Application.new($a) !! GtkApplication;
   }
 
   method get_default_flags is also<get-default-flags> {
-    AmtkFactoryFlags( amtk_factory_get_default_flags($!af) );
+    AmtkFactoryFlagsEnum( amtk_factory_get_default_flags($!af) );
   }
 
   method get_type is also<get-type> {
     state ($n, $t);
+
     unstable_get_type( self.^name, &amtk_factory_get_type, $n, $t );
   }
 
   method set_default_flags (Int() $default_flags) is also<set-default-flags> {
     my guint $d = $default_flags;
+
     amtk_factory_set_default_flags($!af, $d);
   }
 
@@ -596,11 +687,7 @@ class AMTK::Factory {
 
 # CLASS OBJECT
 class AMTK::MenuItem {
-
-  method new(|) {
-    warn "{ ::?CLASS.^name } cannot be instantiated!";
-    AMTK::MenuItem;
-  }
+  also does GLib::Roles::StaticClass;
 
   method get_long_description (GtkMenuItem() $menu_item)
     is also<get-long-description>
@@ -639,19 +726,19 @@ class AMTK::MenuShell {
   }
 
   method new (AmtkMenuShell $shell) {
-    self.bless(:$shell);
+    $shell ?? self.bless(:$shell) !! AmtkMenuShell;
   }
 
   method get_from_gtk_menu_shell (GtkMenuShell() $gtk_menu_shell)
     is also<get-from-gtk-menu-shell>
   {
-    self.bless(
-      shell => amtk_menu_shell_get_from_gtk_menu_shell($gtk_menu_shell)
-    );
+    my $shell = amtk_menu_shell_get_from_gtk_menu_shell($gtk_menu_shell);
+
+    $shell ?? self.bless(:$shell) !! AmtkMenuShell;
   }
 
   # Potential Conflict allowed due to compatibility.
-  method AMTK::Raw::Types::AmtkMenuShell
+  method AMTK::Raw::Definitions::AmtkMenuShell
     is also<MenuShell>
   { * }
 
@@ -667,14 +754,18 @@ class AMTK::MenuShell {
     self.connect-menu-item-selected($!ams);
   }
 
-  method get_menu_shell is also<get-menu-shell> {
-    GTK::MenuShell.new(
-      amtk_menu_shell_get_menu_shell($!ams)
-    );
+  method get_menu_shell (:$raw = False) is also<get-menu-shell> {
+    my $s = amtk_menu_shell_get_menu_shell($!ams);
+
+    $s ??
+      ( $raw ?? $s !! GTK::MenuShell.new($s) )
+      !!
+      GtkMenuShell;
   }
 
   method get_type is also<get-type> {
     state ($n, $t);
+
     unstable_get_type( self.^name, &amtk_menu_shell_get_type, $n, $t );
   }
 
@@ -683,11 +774,7 @@ class AMTK::MenuShell {
 # CLASS OBJECT
 
 class AMTK::GMenu {
-
-  method new(|) {
-    warn "{ ::?CLASS.^name } cannot be instantiated!";
-    AMTK::GMenu;
-  }
+  also does GLib::Roles::StaticClass;
 
   method append_item (GMenu() $menu, GMenuItem() $item) is also<append-item> {
     amtk_gmenu_append_item($menu, $item);
@@ -704,14 +791,14 @@ class AMTK::GMenu {
 # CLASS OBJECT
 
 class AMTK::ShortcutsGroup {
-  use GTK::ShortcutsGroup;
+  #use GTK::ShortcutsGroup;
 
   proto method new (|) { * }
 
   multi method new (Str() $title) {
-    GTK::ShortcutsGroup.new(
-      amtk_shortcuts_group_new($title)
-    )
+    my $sg = amtk_shortcuts_group_new($title);
+
+    $sg ?? GTK::ShortcutsGroup.new($sg) !! GtkShortcutsGroup;
   }
 }
 
@@ -723,9 +810,9 @@ class AMTK::ShortcutsSection {
   proto method new (|) { * }
 
   multi method new (Str() $title) {
-    GTK::ShortcutsSection.new(
-      amtk_shortcuts_section_new($title)
-    )
+    my $ss = amtk_shortcuts_section_new($title);
+
+    $ss ?? GTK::ShortcutsSection.new($ss) !! GtkShortcutsSection;
   }
 }
 
@@ -737,15 +824,17 @@ class AMTK::ShortcutsWindow {
   proto method new (|) { * }
 
   multi method new (GtkWindow() $parent) {
-    GTK::ShortcutsWindow.new(
-      amtk_shortcuts_window_new($parent)
-    );
+    my $sw = amtk_shortcuts_window_new($parent);
+
+    $sw ?? GTK::ShortcutsWindow.new($sw) !! GtkShortcutsWindow;
   }
 }
 
 # CLASS OBJECT
 
 class AMTK::Shortcuts {
+  also does GLib::Roles::StaticClass;
+
   method new_group (Str() $g) is also<new-group> {
     AMTK::ShortcutsGroup.new($g);
   }
@@ -756,11 +845,6 @@ class AMTK::Shortcuts {
 
   method new_window (GtkWindow() $p) is also<new-window> {
     AMTK::ShortcutsWindow.new($p);
-  }
-
-  method new(|) {
-    warn "{ ::?CLASS.^name } cannot be instantiated!";
-    AMTK::Shortcuts;
   }
 }
 
@@ -835,13 +919,15 @@ class AMTK::ActionInfoStore {
   }
 
   multi method new (AmtkActionInfoStore $store) {
-    self.bless(:$store);
+    $store ?? self.bless(:$store) !! AmtkActionInfoStore;
   }
   multi method new {
-    self.bless( store => amtk_action_info_store_new() );
+    my $store = amtk_action_info_store_new();
+
+    $store ?? self.bless(:$store) !! AmtkActionInfoStore;
   }
 
-  method AMTK::Raw::Types::AmtkActionInfoStore
+  method AMTK::Raw::Definitions::AmtkActionInfoStore
     is also<
       AmtkActionInfoStore
       ActionInfoStore
@@ -861,6 +947,7 @@ class AMTK::ActionInfoStore {
     Str() $translation_domain = Str
   ) {
     my $b = AMTK::ActionInfoEntryBlock.new(@entries);
+
     samewith($b, $b.elems, $translation_domain);
   }
   multi method add_entries (
@@ -869,6 +956,7 @@ class AMTK::ActionInfoStore {
     Str()     $translation_domain = Str
   ) {
     my gint $n = $n_entries;
+
     amtk_action_info_store_add_entries(
       $!ais,
       $entries,
@@ -883,6 +971,7 @@ class AMTK::ActionInfoStore {
 
   method get_type is also<get-type> {
     state ($n, $t);
+
     unstable_get_type( self.^name, &amtk_action_info_store_get_type, $n, $t );
   }
 
@@ -890,7 +979,7 @@ class AMTK::ActionInfoStore {
     say "Looking up action: { $action_name }..." if $DEBUG;;
     my $info = amtk_action_info_store_lookup($!ais, $action_name);
     say "ActionInfo: $info" if $DEBUG;
-    $info.defined ?? AMTK::ActionInfo.new($info) !! Nil;
+    $info.defined ?? AMTK::ActionInfo.new($info) !! AmtkActionInfo;
   }
 
   method set_all_accels_to_app (GtkApplication() $application)
