@@ -2,142 +2,51 @@ use v6.c;
 
 use NativeCall;
 
-use GLib::Roles::Pointers;
+use CompUnit::Util :re-export;
+use GLib::Raw::Exports;
+use Pango::Raw::Exports;
+use GIO::Raw::Exports;
+use GDK::Raw::Exports;
+use GTK::Raw::Exports;
+use AMTK::Raw::Exports;
+
+constant forced = 0;
 
 unit package AMTK::Raw::Types;
 
-# Number of forced compiles made
-constant forced = 2;
+need Cairo;
+need GLib::Raw::Definitions;
+need GLib::Raw::Enums;
+need GLib::Raw::Structs;
+need GLib::Raw::Struct_Subs;
+need GLib::Raw::Subs;
+need Pango::Raw::Definitions;
+need Pango::Raw::Enums;
+need Pango::Raw::Structs;
+need Pango::Raw::Subs;
+need GIO::DBus::Raw::Types;
+need GIO::Raw::Definitions;
+need GIO::Raw::Enums;
+need GIO::Raw::Structs;
+need GIO::Raw::Subs;
+need GDK::Raw::Definitions;
+need GDK::Raw::Enums;
+need GDK::Raw::Structs;
+need GDK::Raw::Subs;
+need GTK::Raw::Definitions;
+need GTK::Raw::Enums;
+need GTK::Raw::Requisition;
+need GTK::Raw::Structs;
+need GTK::Raw::Subs;
+need GTK::Raw::Requisition;
+need AMTK::Raw::Definitions;
 
-constant amtk is export = 'amtk-5',v0;
-
-class AmtkActionInfo             is repr('CPointer') is export does GLib::Roles::Pointers { }
-class AmtkActionInfoCentralStore is repr('CPointer') is export does GLib::Roles::Pointers { }
-class AmtkActionInfoStore        is repr('CPointer') is export does GLib::Roles::Pointers { }
-class AmtkApplicationWindow      is repr('CPointer') is export does GLib::Roles::Pointers { }
-class AmtkFactory                is repr('CPointer') is export does GLib::Roles::Pointers { }
-class AmtkMenuShell              is repr('CPointer') is export does GLib::Roles::Pointers { }
-
-class AmtkActionInfoEntry is repr('CStruct') is export {
-	use nqp;
-
-	has Str $!action_name;
-	has Str $!icon_name;
-	has Str $!label;
-	has Str $!accel;
-	has Str $!tooltip;
-
-	# Padding. No access allowed..
-	has uint64 $!padding1;
-	has uint64 $!padding2;
-	has uint64 $!padding3;
-
-
-	method action_name is rw {
-		Proxy.new:
-			FETCH => -> $ { $!action_name },
-			STORE => -> $, Str() $val {
-				nqp::bindattr(
-					nqp::decont(self),
-					AmtkActionInfoEntry,
-					'$!action_name',
-					nqp::decont( $val )
-				);
-			}
-	}
-
-	method icon_name is rw {
-		Proxy.new:
-			FETCH => -> $ { $!icon_name },
-			STORE => -> $, Str() $val {
-				nqp::bindattr(
-					nqp::decont(self),
-					AmtkActionInfoEntry,
-					'$!icon_name',
-					nqp::decont( $val )
-				);
-			}
-	}
-
-	method label is rw {
-		Proxy.new:
-			FETCH => -> $ { $!label },
-			STORE => -> $, Str() $val {
-				nqp::bindattr(
-					nqp::decont(self),
-					AmtkActionInfoEntry,
-					'$!label',
-					nqp::decont( $val )
-				);
-			}
-	}
-
-	method accel is rw {
-		Proxy.new:
-			FETCH => -> $ { $!accel },
-			STORE => -> $, Str() $val {
-				nqp::bindattr(
-					nqp::decont(self),
-					AmtkActionInfoEntry,
-					'$!accel',
-					nqp::decont( $val )
-				);
-			}
-	}
-
-	method tooltip is rw {
-		Proxy.new:
-			FETCH => -> $ { $!tooltip },
-			STORE => -> $, Str() $val {
-				nqp::bindattr(
-					nqp::decont(self),
-					AmtkActionInfoEntry,
-					'$!tooltip',
-					nqp::decont( $val )
-				);
-			}
-	}
-
-  submethod BUILD (
-    :$action_name,
-    :$icon_name,
-    :$label,
-    :$accel,
-    :$tooltip
-  ) {
-		#say "{ ::?CLASS.^name } BUILD enter";
-		self.action_name = $action_name;
-		self.icon_name   = $icon_name;
-		self.label       = $label;
-		self.accel       = $accel;
-		self.tooltip     = $tooltip;
-		#say "{ ::?CLASS.^name } BUILD exit;";
-	}
-
-  method new (
-    Str() $action_name,
-    Str() $icon_name   = Str,
-    Str() $label       = Str,
-    Str() $accel       = Str,
-    Str() $tooltip     = Str
-  ) {
-    self.bless(
-      :$action_name,
-      :$icon_name,
-      :$label,
-      :$accel,
-      :$tooltip
-    );
-  }
+BEGIN {
+  re-export($_) for
+    |@glib-exports,
+    |@pango-exports,
+    |@gio-exports,
+    |@gdk-exports,
+    |@gtk-exports,
+    |@amtk-exports;
 }
-
-our enum AmtkFactoryFlags is export (
-  AMTK_FACTORY_FLAGS_NONE            =>  0,
-  AMTK_FACTORY_IGNORE_GACTION        =>  1,
-  AMTK_FACTORY_IGNORE_ICON           =>  1 +< 1,
-  AMTK_FACTORY_IGNORE_LABEL          =>  1 +< 2,
-  AMTK_FACTORY_IGNORE_TOOLTIP        =>  1 +< 3,
-  AMTK_FACTORY_IGNORE_ACCELS         =>  1 +< 4,
-  AMTK_FACTORY_IGNORE_ACCELS_FOR_DOC =>  1 +< 5,
-  AMTK_FACTORY_IGNORE_ACCELS_FOR_APP =>  1 +< 6,
-);
