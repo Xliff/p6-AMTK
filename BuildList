@@ -20,14 +20,12 @@ GLib::Roles::Object
 GLib::Roles::Pointers
 GLib::Roles::StaticClass
 GLib::Roles::TypedBuffer
-GTK::Compat::Types
 GTK::Raw::Definitions
 GTK::Raw::Enums
 GTK::Raw::Exports
 GTK::Raw::Requisition
 GTK::Raw::Structs
 GTK::Raw::Subs
-GTK::Raw::Utils
 Method::Also
 Pango::Raw::Definitions
 Pango::Raw::Enums
