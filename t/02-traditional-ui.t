@@ -1,8 +1,8 @@
 use v6.c;
 
-use GTK::Compat::Types;
-use GTK::Compat::PropertyAction;
+use AMTK::Raw::Types;
 
+use GIO::PropertyAction;
 use GTK::Application;
 use GTK::Grid;
 use GTK::Label;
@@ -102,7 +102,7 @@ sub create_menu_bar {
 }
 
 sub add_win_actions ($sp) {
-  my $side_panel_action = GTK::Compat::PropertyAction.new(
+  my $side_panel_action = GIO::PropertyAction.new(
     'show-side-panel', $sp, 'visible'
   );
   $app.window.add_action($side_panel_action);

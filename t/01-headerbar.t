@@ -1,11 +1,9 @@
 use v6.c;
 
-use GTK::Compat::Types;
-use GTK::Raw::Types;
+use AMTK::Raw::Types;
 
-use GTK::Compat::Menu;
-use GTK::Compat::PropertyAction;
-
+use GIO::Menu;
+use GIO::PropertyAction;
 use GTK::Application;
 use GTK::Grid;
 use GTK::HeaderBar;
@@ -66,14 +64,14 @@ sub add_win_actions ($w, $sp) {
 
   AMTK::ActionMap.add_action_entries_check_dups($w, @entries);
 
-  my $side_panel_action = GTK::Compat::PropertyAction.new(
+  my $side_panel_action = GIO::PropertyAction.new(
     'show-side-panel', $sp, 'visible'
   );
   $w.add_action($side_panel_action);
 }
 
 sub create_window_menu {
-  my $menu = GTK::Compat::Menu.new;
+  my $menu = GIO::Menu.new;
   my $factory = AMTK::Factory.new;
 
   AMTK::GMenu.append_item(
@@ -111,7 +109,7 @@ sub MAIN {
     flags => G_APPLICATION_FLAGS_NONE
   );
 
-  my $menu = GTK::Compat::Menu.new;
+  my $menu = GIO::Menu.new;
 
   $app.startup. tap({ add_action_info_entries });
   $app.activate.tap({
