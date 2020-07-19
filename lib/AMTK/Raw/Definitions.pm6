@@ -8,7 +8,7 @@ use GLib::Roles::Pointers;
 unit package AMTK::Raw::Types;
 
 # Number of forced compiles made
-my constant forced = 8;
+my constant forced = 10;
 
 constant amtk is export = 'amtk-5',v0;
 
