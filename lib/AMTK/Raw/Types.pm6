@@ -2,7 +2,6 @@ use v6.c;
 
 use NativeCall;
 
-use CompUnit::Util :re-export;
 use GLib::Raw::Exports;
 use Pango::Raw::Exports;
 use GIO::Raw::Exports;
@@ -10,7 +9,7 @@ use GDK::Raw::Exports;
 use GTK::Raw::Exports;
 use AMTK::Raw::Exports;
 
-my constant forced = 8;
+my constant forced = 16;
 
 unit package AMTK::Raw::Types;
 
@@ -43,11 +42,10 @@ need GTK::Raw::Requisition;
 need AMTK::Raw::Definitions;
 
 BEGIN {
-  re-export($_) for
-    |@glib-exports,
-    |@pango-exports,
-    |@gio-exports,
-    |@gdk-exports,
-    |@gtk-exports,
-    |@amtk-exports;
+  glib-re-export($_) for |@glib-exports,
+                         |@pango-exports,
+                         |@gio-exports,
+                         |@gdk-exports,
+                         |@gtk-exports,
+                         |@amtk-exports;
 }
