@@ -1,0 +1,963 @@
+ === GIO::Raw::Exports === 
+Stage start      :   0.000
+Stage parse      :   5.587
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.020
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GIO::Raw::Exports compile time: 6.0300478
+ === GDK::Raw::Exports === 
+Stage start      :   0.000
+Stage parse      :   5.876
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.026
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GDK::Raw::Exports compile time: 6.181119
+ === GDK::Raw::Enums === 
+Stage start      :   0.000
+Stage parse      :   5.900
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.018
+Stage mast       :   0.029
+Stage mbc        :   0.017
+Stage moar       :   0.000
+
+GDK::Raw::Enums compile time: 6.2482632
+ === GIO::Raw::Definitions === 
+Stage start      :   0.000
+Stage parse      :   5.981
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.006
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+GIO::Raw::Definitions compile time: 6.33189054
+ === GIO::Raw::Enums === 
+Stage start      :   0.000
+Stage parse      :   6.078
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.005
+Stage mast       :   0.010
+Stage mbc        :   0.004
+Stage moar       :   0.000
+
+GIO::Raw::Enums compile time: 6.37117902
+ === Cairo === 
+Stage start      :   0.000
+Stage parse      :   6.276
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.004
+Stage mast       :   0.008
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+Cairo compile time: 6.549329
+ === GIO::Raw::Quarks === 
+Stage start      :   0.000
+Stage parse      :   6.095
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+GIO::Raw::Quarks compile time: 6.47111192
+ === GLib::Raw::Exceptions === 
+Stage start      :   0.000
+Stage parse      :   5.789
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.009
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GLib::Raw::Exceptions compile time: 6.3565847
+ === GDK::Raw::Definitions === 
+Stage start      :   0.000
+Stage parse      :   6.390
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+GDK::Raw::Definitions compile time: 6.7115106
+ === GDK::Raw::Structs === 
+Stage start      :   0.000
+Stage parse      :   6.379
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.006
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+GDK::Raw::Structs compile time: 6.6921481
+ === GIO::Raw::Subs === 
+Stage start      :   0.000
+Stage parse      :   6.221
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.006
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+GIO::Raw::Subs compile time: 6.606082
+ === GDK::Raw::Subs === 
+Stage start      :   0.000
+Stage parse      :   6.617
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+GDK::Raw::Subs compile time: 6.89817512
+ === GLib::Raw::Exports === 
+Stage start      :   0.000
+Stage parse      :   6.419
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.009
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GLib::Raw::Exports compile time: 6.84306196
+ === GLib::Raw::Struct_Subs === 
+Stage start      :   0.000
+Stage parse      :   6.229
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.006
+Stage mast       :   0.004
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+GLib::Raw::Struct_Subs compile time: 6.7915187
+ === GLib::Raw::Definitions === 
+Stage start      :   0.000
+Stage parse      :   6.549
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.003
+Stage mast       :   0.006
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+GLib::Raw::Definitions compile time: 6.9685788
+ === GLib::Raw::Enums === 
+Stage start      :   0.000
+Stage parse      :   6.320
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.025
+Stage mast       :   0.035
+Stage mbc        :   0.017
+Stage moar       :   0.000
+
+GLib::Raw::Enums compile time: 6.9598257
+ === GLib::Raw::Structs === 
+Stage start      :   0.000
+Stage parse      :   6.235
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.006
+Stage moar       :   0.000
+
+GLib::Raw::Structs compile time: 6.8826146
+ === GLib::Raw::Object === 
+Stage start      :   0.000
+Stage parse      :   6.385
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GLib::Raw::Object compile time: 7.1550386
+ === GIO::DBus::Raw::Types === 
+Stage start      :   0.000
+Stage parse      :   7.213
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.008
+Stage mbc        :   0.006
+Stage moar       :   0.000
+
+GIO::DBus::Raw::Types compile time: 7.5567278
+ === GIO::Raw::Structs === 
+Stage start      :   0.000
+Stage parse      :   7.149
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+GIO::Raw::Structs compile time: 7.63729985
+ === GLib::Roles::Pointers === 
+Stage start      :   0.000
+Stage parse      :   6.023
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+GLib::Roles::Pointers compile time: 6.636507
+ === GTK::Raw::Exports === 
+Stage start      :   0.000
+Stage parse      :   5.648
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.032
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GTK::Raw::Exports compile time: 6.31375292
+ === GTK::Raw::Definitions === 
+Stage start      :   0.000
+Stage parse      :   6.237
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.003
+Stage mast       :   0.007
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+GTK::Raw::Definitions compile time: 6.7197978
+ === GTK::Raw::Subs === 
+Stage start      :   0.000
+Stage parse      :   5.886
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.014
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+GTK::Raw::Subs compile time: 6.6133748
+ === Method::Also === 
+Stage start      :   0.000
+Stage parse      :   5.750
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.021
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Method::Also compile time: 6.5258833
+ === GLib::Raw::Subs === 
+Stage start      :   0.000
+Stage parse      :   6.862
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+GLib::Raw::Subs compile time: 7.4482719
+ === Pango::Raw::Exports === 
+Stage start      :   0.000
+Stage parse      :   5.558
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.008
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Exports compile time: 6.388575
+ === Pango::Raw::Enums === 
+Stage start      :   0.000
+Stage parse      :   5.926
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.006
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+Pango::Raw::Enums compile time: 6.4631052
+ === AMTK::Raw::Exports === 
+Stage start      :   0.000
+Stage parse      :   5.513
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.008
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK::Raw::Exports compile time: 6.1829358
+ === Pango::Raw::Definitions === 
+Stage start      :   0.000
+Stage parse      :   5.952
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Definitions compile time: 6.6162952
+ === GLib::Roles::TypedBuffer === 
+Stage start      :   0.000
+Stage parse      :   6.732
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.002
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+GLib::Roles::TypedBuffer compile time: 7.35678061
+ === GLib::Roles::StaticClass === 
+Stage start      :   0.000
+Stage parse      :   6.563
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+GLib::Roles::StaticClass compile time: 7.430759
+ === GTK::Raw::Enums === 
+Stage start      :   0.000
+Stage parse      :   6.866
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.004
+Stage mast       :   0.010
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+GTK::Raw::Enums compile time: 7.48724
+ === Pango::Raw::Structs === 
+Stage start      :   0.000
+Stage parse      :   6.177
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+Pango::Raw::Structs compile time: 6.8564925
+ === GTK::Raw::Requisition === 
+Stage start      :   0.000
+Stage parse      :   6.792
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.002
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+GTK::Raw::Requisition compile time: 7.5051637
+ === Pango::Raw::Subs === 
+Stage start      :   0.000
+Stage parse      :   6.327
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.002
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+Pango::Raw::Subs compile time: 6.9183996
+ === GLib::Roles::Object === 
+Stage start      :   0.000
+Stage parse      :   7.393
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.002
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+GLib::Roles::Object compile time: 8.073157
+ === GTK::Raw::Structs === 
+Stage start      :   0.000
+Stage parse      :   7.051
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GTK::Raw::Structs compile time: 7.610324
+ === AMTK::Raw::Definitions === 
+Stage start      :   0.000
+
+    precomp lib/AMTK/Raw/Definitions.pm6
+    Stage start      :   0.000
+    Stage parse      :   4.046
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.016
+    Stage mast       :   0.043
+    Stage mbc        :   0.003
+Stage parse      :   8.169
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+AMTK::Raw::Definitions compile time: 8.7953133
+ === AMTK::Raw::Types === 
+Stage start      :   0.000
+
+    precomp lib/AMTK/Raw/Types.pm6
+    Stage start      :   0.000
+    Stage parse      :   3.163
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.001
+    Stage mast       :   0.035
+    Stage mbc        :   0.004
+Stage parse      :   5.269
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.011
+Stage mast       :   0.056
+Stage mbc        :   0.017
+Stage moar       :   0.000
+
+AMTK::Raw::Types compile time: 5.5459407
+ === AMTK::Roles::Signals === 
+Stage start      :   0.000
+
+    precomp lib/AMTK/Roles/Signals.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.828
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.022
+    Stage mast       :   0.063
+    Stage mbc        :   0.024
+Stage parse      :   5.385
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK::Roles::Signals compile time: 5.57523
+ === AMTK::TypedBlocks === 
+Stage start      :   0.000
+
+    precomp lib/AMTK/TypedBlocks.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.855
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.012
+    Stage mast       :   0.046
+    Stage mbc        :   0.011
+Stage parse      :   5.389
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK::TypedBlocks compile time: 5.5802707
+ === AMTK::Raw::Subs === 
+Stage start      :   0.000
+
+    precomp lib/AMTK/Raw/Subs.pm6
+    Stage start      :   0.000
+    Stage parse      :  11.935
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.051
+    Stage mast       :   0.203
+    Stage mbc        :   0.317
+Stage parse      :  15.084
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK::Raw::Subs compile time: 15.2832143
+ === AMTK === 
+Stage start      :   0.000
+
+    precomp lib/AMTK.pm6
+    Stage start      :   0.000
+    
+        precomp ../p6-GtkPlus/lib/GTK/Application.pm6
+        Stage start      :   0.000
+        
+            precomp ../p6-GtkPlus/lib/GTK/Raw/Application.pm6
+            Stage start      :   0.000
+            Stage parse      :   5.294
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.019
+            Stage mast       :   0.076
+            Stage mbc        :   0.182
+        
+            precomp ../p6-GtkPlus/lib/GTK/Raw/Main.pm6
+            Stage start      :   0.000
+            Stage parse      :   7.494
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.029
+            Stage mast       :   0.099
+            Stage mbc        :   0.216
+        
+            precomp ../p6-GtkPlus/lib/GTK/ApplicationWindow.pm6
+            Stage start      :   0.000
+            
+                precomp ../p6-GtkPlus/lib/GTK/Raw/ApplicationWindow.pm6
+                Stage start      :   0.000
+                Stage parse      :   3.624
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.011
+                Stage mast       :   0.054
+                Stage mbc        :   0.053
+            
+                precomp ../p6-GtkPlus/lib/GTK/ShortcutsWindow.pm6
+                Stage start      :   0.000
+                Stage parse      :   6.059
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.012
+                Stage mast       :   0.134
+                Stage mbc        :   0.043
+            Stage parse      :  14.542
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.018
+            Stage mast       :   0.128
+            Stage mbc        :   0.023
+        
+            precomp ../p6-GtkPlus/lib/GTK/Roles/Signals/Application.pm6
+            Stage start      :   0.000
+            Stage parse      :   3.061
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.015
+            Stage mast       :   0.049
+            Stage mbc        :   0.027
+        Stage parse      :  37.472
+        Stage syntaxcheck:   0.000
+        Stage ast        :   0.000
+        Stage optimize   :   0.026
+        Stage mast       :   0.146
+        Stage mbc        :   0.035
+    
+        precomp ../p6-GtkPlus/lib/GTK/MenuItem.pm6
+        Stage start      :   0.000
+        
+            precomp ../p6-GtkPlus/lib/GTK/Raw/MenuItem.pm6
+            Stage start      :   0.000
+            Stage parse      :   5.307
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.018
+            Stage mast       :   0.071
+            Stage mbc        :   0.126
+        Stage parse      :  11.958
+        Stage syntaxcheck:   0.000
+        Stage ast        :   0.000
+        Stage optimize   :   0.029
+        Stage mast       :   0.151
+        Stage mbc        :   0.043
+    
+        precomp ../p6-GtkPlus/lib/GTK/RecentChooserMenu.pm6
+        Stage start      :   0.000
+        
+            precomp ../p6-GtkPlus/lib/GTK/Raw/RecentChooserMenu.pm6
+            Stage start      :   0.000
+            Stage parse      :   3.370
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.010
+            Stage mast       :   0.047
+            Stage mbc        :   0.044
+        
+            precomp ../p6-GtkPlus/lib/GTK/Roles/RecentChooser.pm6
+            Stage start      :   0.000
+            
+                precomp ../p6-GtkPlus/lib/GTK/Raw/RecentChooser.pm6
+                Stage start      :   0.000
+                Stage parse      :   6.855
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.023
+                Stage mast       :   0.095
+                Stage mbc        :   0.191
+            
+                precomp ../p6-GtkPlus/lib/GTK/RecentFilter.pm6
+                Stage start      :   0.000
+                
+                    precomp ../p6-GtkPlus/lib/GTK/Raw/RecentFilter.pm6
+                    Stage start      :   0.000
+                    Stage parse      :   4.320
+                    Stage syntaxcheck:   0.000
+                    Stage ast        :   0.000
+                    Stage optimize   :   0.082
+                    Stage mast       :   0.059
+                    Stage mbc        :   0.078
+                Stage parse      :   8.413
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.013
+                Stage mast       :   0.065
+                Stage mbc        :   0.022
+            
+                precomp ../p6-GtkPlus/lib/GTK/RecentInfo.pm6
+                Stage start      :   0.000
+                
+                    precomp ../p6-GtkPlus/lib/GTK/Raw/RecentInfo.pm6
+                    Stage start      :   0.000
+                    Stage parse      :   7.590
+                    Stage syntaxcheck:   0.000
+                    Stage ast        :   0.000
+                    Stage optimize   :   0.024
+                    Stage mast       :   0.101
+                    Stage mbc        :   0.212
+                Stage parse      :  12.414
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.026
+                Stage mast       :   0.076
+                Stage mbc        :   0.051
+            Stage parse      :  32.294
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.136
+            Stage mast       :   0.095
+            Stage mbc        :   0.037
+        
+            precomp ../p6-GtkPlus/lib/GTK/Menu.pm6
+            Stage start      :   0.000
+            
+                precomp ../p6-GtkPlus/lib/GTK/Raw/Menu.pm6
+                Stage start      :   0.000
+                Stage parse      :   6.620
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.023
+                Stage mast       :   0.176
+                Stage mbc        :   0.178
+            
+                precomp ../p6-GtkPlus/lib/GTK/Roles/Signals/Menu.pm6
+                Stage start      :   0.000
+                Stage parse      :   3.057
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.011
+                Stage mast       :   0.050
+                Stage mbc        :   0.026
+            
+                precomp ../p6-GtkPlus/lib/GTK/AccelGroup.pm6
+                Stage start      :   0.000
+                
+                    precomp ../p6-GtkPlus/lib/GTK/Raw/AccelGroup.pm6
+                    Stage start      :   0.000
+                    Stage parse      :   5.860
+                    Stage syntaxcheck:   0.000
+                    Stage ast        :   0.000
+                    Stage optimize   :   0.021
+                    Stage mast       :   0.086
+                    Stage mbc        :   0.147
+                Stage parse      :   8.903
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.025
+                Stage mast       :   0.070
+                Stage mbc        :   0.012
+            
+                precomp ../p6-GtkPlus/lib/GTK/MenuShell.pm6
+                Stage start      :   0.000
+                
+                    precomp ../p6-GtkPlus/lib/GTK/Raw/MenuShell.pm6
+                    Stage start      :   0.000
+                    Stage parse      :   4.599
+                    Stage syntaxcheck:   0.000
+                    Stage ast        :   0.000
+                    Stage optimize   :   0.029
+                    Stage mast       :   0.063
+                    Stage mbc        :   0.090
+                
+                    precomp ../p6-GtkPlus/lib/GTK/Roles/Signals/MenuShell.pm6
+                    Stage start      :   0.000
+                    Stage parse      :   3.035
+                    Stage syntaxcheck:   0.000
+                    Stage ast        :   0.000
+                    Stage optimize   :   0.016
+                    Stage mast       :   0.048
+                    Stage mbc        :   0.026
+                Stage parse      :  14.583
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.020
+                Stage mast       :   0.139
+                Stage mbc        :   0.043
+            Stage parse      :  38.987
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.031
+            Stage mast       :   0.148
+            Stage mbc        :   0.020
+        Stage parse      :  79.667
+        Stage syntaxcheck:   0.000
+        Stage ast        :   0.000
+        Stage optimize   :   0.017
+        Stage mast       :   0.122
+        Stage mbc        :   0.018
+    
+        precomp ../p6-GtkPlus/lib/GTK/Statusbar.pm6
+        Stage start      :   0.000
+        
+            precomp ../p6-GtkPlus/lib/GTK/Raw/Statusbar.pm6
+            Stage start      :   0.000
+            Stage parse      :   3.733
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.011
+            Stage mast       :   0.054
+            Stage mbc        :   0.052
+        
+            precomp ../p6-GtkPlus/lib/GTK/Box.pm6
+            Stage start      :   0.000
+            
+                precomp ../p6-GtkPlus/lib/GTK/Raw/Box.pm6
+                Stage start      :   0.000
+                Stage parse      :   4.683
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.025
+                Stage mast       :   0.065
+                Stage mbc        :   0.089
+            
+                precomp ../p6-GtkPlus/lib/GTK/Roles/Orientable.pm6
+                Stage start      :   0.000
+                
+                    precomp ../p6-GtkPlus/lib/GTK/Raw/Orientable.pm6
+                    Stage start      :   0.000
+                    Stage parse      :   3.141
+                    Stage syntaxcheck:   0.000
+                    Stage ast        :   0.000
+                    Stage optimize   :   0.010
+                    Stage mast       :   0.047
+                    Stage mbc        :   0.031
+                Stage parse      :   5.934
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.015
+                Stage mast       :   0.055
+                Stage mbc        :   0.012
+            Stage parse      :  17.482
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.037
+            Stage mast       :   0.153
+            Stage mbc        :   0.045
+        
+            precomp ../p6-GtkPlus/lib/GTK/Roles/Signals/Statusbar.pm6
+            Stage start      :   0.000
+            Stage parse      :   2.976
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.015
+            Stage mast       :   0.048
+            Stage mbc        :   0.025
+        Stage parse      :  28.148
+        Stage syntaxcheck:   0.000
+        Stage ast        :   0.000
+        Stage optimize   :   0.022
+        Stage mast       :   0.132
+        Stage mbc        :   0.011
+    
+        precomp ../p6-GtkPlus/lib/GTK/CheckMenuItem.pm6
+        Stage start      :   0.000
+        
+            precomp ../p6-GtkPlus/lib/GTK/Raw/CheckMenuItem.pm6
+            Stage start      :   0.000
+            Stage parse      :   4.048
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.011
+            Stage mast       :   0.057
+            Stage mbc        :   0.070
+        Stage parse      :   7.525
+        Stage syntaxcheck:   0.000
+        Stage ast        :   0.000
+        Stage optimize   :   0.023
+        Stage mast       :   0.135
+        Stage mbc        :   0.010
+    
+        precomp ../p6-GtkPlus/lib/GTK/MenuToolButton.pm6
+        Stage start      :   0.000
+        
+            precomp ../p6-GtkPlus/lib/GTK/Raw/MenuToolButton.pm6
+            Stage start      :   0.000
+            Stage parse      :   3.655
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.011
+            Stage mast       :   0.056
+            Stage mbc        :   0.052
+        
+            precomp ../p6-GtkPlus/lib/GTK/ToolButton.pm6
+            Stage start      :   0.000
+            
+                precomp ../p6-GtkPlus/lib/GTK/Raw/ToolButton.pm6
+                Stage start      :   0.000
+                Stage parse      :   4.808
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.033
+                Stage mast       :   0.070
+                Stage mbc        :   0.100
+            
+                precomp ../p6-GtkPlus/lib/GTK/Image.pm6
+                Stage start      :   0.000
+                
+                    precomp ../p6-GtkPlus/lib/GTK/Raw/Image.pm6
+                    Stage start      :   0.000
+                    Stage parse      :   6.612
+                    Stage syntaxcheck:   0.000
+                    Stage ast        :   0.000
+                    Stage optimize   :   0.024
+                    Stage mast       :   0.093
+                    Stage mbc        :   0.174
+                Stage parse      :  12.786
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.032
+                Stage mast       :   0.165
+                Stage mbc        :   0.044
+            
+                precomp ../p6-GtkPlus/lib/GTK/ToolItem.pm6
+                Stage start      :   0.000
+                
+                    precomp ../p6-GtkPlus/lib/GTK/Raw/ToolItem.pm6
+                    Stage start      :   0.000
+                    Stage parse      :   6.449
+                    Stage syntaxcheck:   0.000
+                    Stage ast        :   0.000
+                    Stage optimize   :   0.022
+                    Stage mast       :   0.086
+                    Stage mbc        :   0.249
+                
+                    precomp ../p6-GtkPlus/lib/GTK/SizeGroup.pm6
+                    Stage start      :   0.000
+                    
+                        precomp ../p6-GtkPlus/lib/GTK/Raw/SizeGroup.pm6
+                        Stage start      :   0.000
+                        Stage parse      :   3.912
+                        Stage syntaxcheck:   0.000
+                        Stage ast        :   0.000
+                        Stage optimize   :   0.011
+                        Stage mast       :   0.057
+                        Stage mbc        :   0.060
+                    Stage parse      :   7.569
+                    Stage syntaxcheck:   0.000
+                    Stage ast        :   0.000
+                    Stage optimize   :   0.013
+                    Stage mast       :   0.064
+                    Stage mbc        :   0.019
+                Stage parse      :  21.771
+                Stage syntaxcheck:   0.000
+                Stage ast        :   0.000
+                Stage optimize   :   0.025
+                Stage mast       :   0.143
+                Stage mbc        :   0.068
+            Stage parse      :  44.035
+            Stage syntaxcheck:   0.000
+            Stage ast        :   0.000
+            Stage optimize   :   0.024
+            Stage mast       :   0.133
+            Stage mbc        :   0.014
+        Stage parse      :  51.481
+        Stage syntaxcheck:   0.000
+        Stage ast        :   0.000
+        Stage optimize   :   0.019
+        Stage mast       :   0.115
+        Stage mbc        :   0.009
+    
+        precomp ../p6-GtkPlus/lib/GTK/ShortcutsShortcut.pm6
+        Stage start      :   0.000
+        Stage parse      :   3.895
+        Stage syntaxcheck:   0.000
+        Stage ast        :   0.000
+        Stage optimize   :   0.021
+        Stage mast       :   0.126
+        Stage mbc        :   0.019
+    
+        precomp ../p6-GtkPlus/lib/GTK/ShortcutsGroup.pm6
+        Stage start      :   0.000
+        Stage parse      :   3.918
+        Stage syntaxcheck:   0.000
+        Stage ast        :   0.000
+        Stage optimize   :   0.017
+        Stage mast       :   0.117
+        Stage mbc        :   0.018
+    
+        precomp ../p6-GtkPlus/lib/GTK/ShortcutsSection.pm6
+        Stage start      :   0.000
+        Stage parse      :   3.787
+        Stage syntaxcheck:   0.000
+        Stage ast        :   0.000
+        Stage optimize   :   0.013
+        Stage mast       :   0.122
+        Stage mbc        :   0.013
+    Stage parse      : 237.710
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.063
+    Stage mast       :   0.441
+    Stage mbc        :   0.023
+Stage parse      : 242.664
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK compile time: 242.8828996
+
+Total compile time: 280.1812845s
