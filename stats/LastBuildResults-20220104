@@ -1,11 +1,11 @@
 Dependency Generation
 =====================
-real 0.81
-user 1.24
+real 0.82
+user 1.31
 sys 0.04
  === Cairo === (1/60)
 Stage start      :   0.000
-Stage parse      :   1.520
+Stage parse      :   1.616
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
@@ -14,43 +14,43 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GDK::Raw::Definitions === (2/60)
 Stage start      :   0.000
-Stage parse      :   1.580
+Stage parse      :   1.802
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
 Stage mast       :   0.002
-Stage mbc        :   0.001
-Stage moar       :   0.001
+Stage mbc        :   0.002
+Stage moar       :   0.000
  === GDK::Raw::Enums === (3/60)
 Stage start      :   0.000
-Stage parse      :   1.572
+Stage parse      :   1.736
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.003
-Stage mast       :   0.005
-Stage mbc        :   0.002
+Stage optimize   :   0.004
+Stage mast       :   0.006
+Stage mbc        :   0.003
 Stage moar       :   0.000
  === GDK::Raw::Exports === (4/60)
 Stage start      :   0.000
-Stage parse      :   1.353
+Stage parse      :   1.486
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
-Stage mast       :   0.006
+Stage mast       :   0.007
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GDK::Raw::Structs === (5/60)
 Stage start      :   0.000
-Stage parse      :   1.659
+Stage parse      :   1.811
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
 Stage mast       :   0.002
-Stage mbc        :   0.001
+Stage mbc        :   0.002
 Stage moar       :   0.000
  === GDK::Raw::Subs === (6/60)
 Stage start      :   0.000
-Stage parse      :   1.597
+Stage parse      :   1.775
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -59,70 +59,89 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GIO::DBus::Raw::Types === (7/60)
 Stage start      :   0.000
-Stage parse      :   1.928
+Stage parse      :   2.066
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
-Stage mast       :   0.003
+Stage mast       :   0.002
 Stage mbc        :   0.002
 Stage moar       :   0.000
  === GIO::MenuItem === (8/60)
 Stage start      :   0.000
-Stage parse      :   2.289
-Stage syntaxcheck:   0.000
-Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.003
-Stage moar       :   0.000
- === GIO::Raw::Definitions === (9/60)
-Stage start      :   0.000
-Stage parse      :   1.569
+
+    precomp ../p6-GIO/lib/GIO/MenuItem.pm6
+    Stage start      :   0.000
+    
+        precomp ../p6-GIO/lib/GIO/Raw/Menu.pm6
+        Stage start      :   0.000
+        Stage parse      :   3.340
+        Stage syntaxcheck:   0.000
+        Stage ast        :   0.000
+        Stage optimize   :   0.027
+        Stage mast       :   0.063
+        Stage mbc        :   0.035
+    Stage parse      :   6.889
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.036
+    Stage mast       :   0.043
+    Stage mbc        :   0.020
+R: GLib::Roles::Object
+Stage parse      :   9.126
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
-Stage mast       :   0.009
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === GIO::Raw::Definitions === (9/60)
+Stage start      :   0.000
+Stage parse      :   1.714
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GIO::Raw::Enums === (10/60)
 Stage start      :   0.000
-Stage parse      :   1.558
+Stage parse      :   1.724
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
-Stage mast       :   0.003
+Stage mast       :   0.004
 Stage mbc        :   0.002
 Stage moar       :   0.000
  === GIO::Raw::Exports === (11/60)
 Stage start      :   0.000
-Stage parse      :   1.324
+Stage parse      :   1.478
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
-Stage mast       :   0.010
+Stage mast       :   0.011
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GIO::Raw::Quarks === (12/60)
 Stage start      :   0.000
-Stage parse      :   1.795
+Stage parse      :   2.039
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
-Stage mast       :   0.002
+Stage mast       :   0.001
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GIO::Raw::Structs === (13/60)
 Stage start      :   0.000
-Stage parse      :   1.792
+Stage parse      :   1.959
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
 Stage mast       :   0.002
-Stage mbc        :   0.001
+Stage mbc        :   0.002
 Stage moar       :   0.000
  === GIO::Raw::Subs === (14/60)
 Stage start      :   0.000
-Stage parse      :   1.805
+Stage parse      :   1.958
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -131,16 +150,16 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GIO::Roles::ActionMap === (15/60)
 Stage start      :   0.000
-Stage parse      :   2.160
+Stage parse      :   2.373
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.002
-Stage mbc        :   0.003
+Stage optimize   :   0.001
+Stage mast       :   0.001
+Stage mbc        :   0.013
 Stage moar       :   0.000
  === GLib::Raw::Definitions === (16/60)
 Stage start      :   0.000
-Stage parse      :   1.570
+Stage parse      :   1.723
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -149,25 +168,25 @@ Stage mbc        :   0.008
 Stage moar       :   0.000
  === GLib::Raw::Enums === (17/60)
 Stage start      :   0.000
-Stage parse      :   1.658
+Stage parse      :   1.788
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.005
-Stage mast       :   0.006
+Stage mast       :   0.007
 Stage mbc        :   0.003
 Stage moar       :   0.000
  === GLib::Raw::Exceptions === (18/60)
 Stage start      :   0.000
-Stage parse      :   1.304
+Stage parse      :   1.520
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
-Stage mast       :   0.006
+Stage mast       :   0.007
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Raw::Exports === (19/60)
 Stage start      :   0.000
-Stage parse      :   1.396
+Stage parse      :   1.560
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -176,7 +195,7 @@ Stage mbc        :   0.000
 Stage moar       :   0.000
  === GLib::Raw::Object === (20/60)
 Stage start      :   0.000
-Stage parse      :   1.649
+Stage parse      :   1.850
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -185,16 +204,16 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Raw::Struct_Subs === (21/60)
 Stage start      :   0.000
-Stage parse      :   1.548
+Stage parse      :   1.764
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.001
+Stage optimize   :   0.008
 Stage mast       :   0.002
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Raw::Structs === (22/60)
 Stage start      :   0.000
-Stage parse      :   1.734
+Stage parse      :   1.929
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -203,7 +222,7 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Raw::Subs === (23/60)
 Stage start      :   0.000
-Stage parse      :   1.742
+Stage parse      :   1.915
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -212,7 +231,7 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Roles::Object === (24/60)
 Stage start      :   0.000
-Stage parse      :   2.030
+Stage parse      :   2.229
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -221,7 +240,7 @@ Stage mbc        :   0.002
 Stage moar       :   0.000
  === GLib::Roles::Pointers === (25/60)
 Stage start      :   0.000
-Stage parse      :   1.554
+Stage parse      :   1.692
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -230,70 +249,70 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Roles::StaticClass === (26/60)
 Stage start      :   0.000
-Stage parse      :   1.792
+Stage parse      :   1.976
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
+Stage optimize   :   0.001
 Stage mast       :   0.001
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Roles::TypedBuffer === (27/60)
 Stage start      :   0.000
-Stage parse      :   1.773
+Stage parse      :   1.939
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.002
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GTK::Application === (28/60)
 Stage start      :   0.000
-Stage parse      :   4.523
+Stage parse      :   4.916
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
 Stage mast       :   0.001
-Stage mbc        :   0.008
+Stage mbc        :   0.009
 Stage moar       :   0.000
  === GTK::CheckMenuItem === (29/60)
 Stage start      :   0.000
-Stage parse      :   3.930
+Stage parse      :   4.234
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
+Stage optimize   :   0.001
 Stage mast       :   0.001
 Stage mbc        :   0.009
 Stage moar       :   0.000
  === GTK::Menu === (30/60)
 Stage start      :   0.000
-Stage parse      :   4.031
+Stage parse      :   4.489
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
+Stage optimize   :   0.001
 Stage mast       :   0.001
 Stage mbc        :   0.009
 Stage moar       :   0.000
  === GTK::MenuItem === (31/60)
 Stage start      :   0.000
-Stage parse      :   3.783
+Stage parse      :   4.124
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.007
+Stage moar       :   0.000
+ === GTK::MenuToolButton === (32/60)
+Stage start      :   0.000
+Stage parse      :   4.604
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
 Stage mast       :   0.001
-Stage mbc        :   0.006
-Stage moar       :   0.000
- === GTK::MenuToolButton === (32/60)
-Stage start      :   0.000
-Stage parse      :   4.165
-Stage syntaxcheck:   0.000
-Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.009
+Stage mbc        :   0.010
 Stage moar       :   0.000
  === GTK::Raw::Definitions === (33/60)
 Stage start      :   0.000
-Stage parse      :   1.557
+Stage parse      :   1.705
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
@@ -302,34 +321,34 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GTK::Raw::Enums === (34/60)
 Stage start      :   0.000
-Stage parse      :   1.594
+Stage parse      :   1.740
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.004
-Stage mast       :   0.006
+Stage optimize   :   0.005
+Stage mast       :   0.007
 Stage mbc        :   0.003
 Stage moar       :   0.000
  === GTK::Raw::Exports === (35/60)
 Stage start      :   0.000
-Stage parse      :   1.296
+Stage parse      :   1.482
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
-Stage mast       :   0.010
+Stage mast       :   0.007
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GTK::Raw::Requisition === (36/60)
 Stage start      :   0.000
-Stage parse      :   1.972
+Stage parse      :   2.178
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
+Stage optimize   :   0.001
 Stage mast       :   0.002
 Stage mbc        :   0.002
 Stage moar       :   0.000
  === GTK::Raw::Structs === (37/60)
 Stage start      :   0.000
-Stage parse      :   1.928
+Stage parse      :   2.181
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -338,112 +357,88 @@ Stage mbc        :   0.002
 Stage moar       :   0.000
  === GTK::Raw::Subs === (38/60)
 Stage start      :   0.000
-Stage parse      :   1.571
+Stage parse      :   1.780
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
 Stage mast       :   0.002
-Stage mbc        :   0.001
+Stage mbc        :   0.002
 Stage moar       :   0.000
  === GTK::RecentChooserMenu === (39/60)
 Stage start      :   0.000
-Stage parse      :   4.357
+Stage parse      :   4.768
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.001
+Stage mbc        :   0.010
+Stage moar       :   0.000
+ === GTK::ShortcutsGroup === (40/60)
+Stage start      :   0.000
+Stage parse      :   4.408
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.001
+Stage mbc        :   0.007
+Stage moar       :   0.000
+ === GTK::ShortcutsSection === (41/60)
+Stage start      :   0.000
+Stage parse      :   4.106
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.001
+Stage mbc        :   0.007
+Stage moar       :   0.000
+ === GTK::ShortcutsShortcut === (42/60)
+Stage start      :   0.000
+Stage parse      :   4.100
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.006
+Stage moar       :   0.000
+ === GTK::ShortcutsWindow === (43/60)
+Stage start      :   0.000
+Stage parse      :   4.250
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.007
+Stage moar       :   0.000
+ === GTK::Statusbar === (44/60)
+Stage start      :   0.000
+Stage parse      :   4.327
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
 Stage mast       :   0.001
 Stage mbc        :   0.010
 Stage moar       :   0.000
- === GTK::ShortcutsGroup === (40/60)
-Stage start      :   0.000
-
-    precomp ../p6-GtkPlus/lib/GTK/ShortcutsGroup.pm6
-    Stage start      :   0.000
-    [31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-GtkPlus/lib/GTK/ShortcutsGroup.pm6 (GTK::ShortcutsGroup)
-    Undeclared name:
-        BoxAncestry used at line 12
-    
-[31m===[0mSORRY![31m===[0m Error while compiling -e
-Stage start      :   0.000
-[31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-GtkPlus/lib/GTK/ShortcutsGroup.pm6 (GTK::ShortcutsGroup)
-Undeclared name:
-    BoxAncestry used at line 12
-
-
-at -e:1
- === GTK::ShortcutsSection === (41/60)
-Stage start      :   0.000
-
-    precomp ../p6-GtkPlus/lib/GTK/ShortcutsSection.pm6
-    Stage start      :   0.000
-    [31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-GtkPlus/lib/GTK/ShortcutsSection.pm6 (GTK::ShortcutsSection)
-    Undeclared name:
-        BoxAncestry used at line 11
-    
-[31m===[0mSORRY![31m===[0m Error while compiling -e
-Stage start      :   0.000
-[31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-GtkPlus/lib/GTK/ShortcutsSection.pm6 (GTK::ShortcutsSection)
-Undeclared name:
-    BoxAncestry used at line 11
-
-
-at -e:1
- === GTK::ShortcutsShortcut === (42/60)
-Stage start      :   0.000
-
-    precomp ../p6-GtkPlus/lib/GTK/ShortcutsShortcut.pm6
-    Stage start      :   0.000
-    [31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-GtkPlus/lib/GTK/ShortcutsShortcut.pm6 (GTK::ShortcutsShortcut)
-    Undeclared name:
-        BoxAncestry used at line 11. Did you mean 'GtkBoxAncestry'?
-    
-[31m===[0mSORRY![31m===[0m Error while compiling -e
-Stage start      :   0.000
-[31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-GtkPlus/lib/GTK/ShortcutsShortcut.pm6 (GTK::ShortcutsShortcut)
-Undeclared name:
-    BoxAncestry used at line 11. Did you mean 'GtkBoxAncestry'?
-
-
-at -e:1
- === GTK::ShortcutsWindow === (43/60)
-Stage start      :   0.000
-Stage parse      :   3.881
-Stage syntaxcheck:   0.000
-Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.006
-Stage moar       :   0.000
- === GTK::Statusbar === (44/60)
-Stage start      :   0.000
-Stage parse      :   3.866
-Stage syntaxcheck:   0.000
-Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.006
-Stage moar       :   0.000
  === GTK::ToolItem === (45/60)
 Stage start      :   0.000
-Stage parse      :   3.978
+Stage parse      :   4.283
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.009
+Stage mast       :   0.008
+Stage mbc        :   0.007
 Stage moar       :   0.000
  === Method::Also === (46/60)
 Stage start      :   0.000
-Stage parse      :   1.313
+Stage parse      :   1.470
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
-Stage mast       :   0.006
+Stage mast       :   0.007
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === NativeCall === (47/60)
 Stage start      :   0.000
-Stage parse      :   1.484
+Stage parse      :   1.629
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -452,7 +447,7 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::Definitions === (48/60)
 Stage start      :   0.000
-Stage parse      :   1.607
+Stage parse      :   1.817
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -461,34 +456,34 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::Enums === (49/60)
 Stage start      :   0.000
-Stage parse      :   1.604
+Stage parse      :   1.807
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
 Stage mast       :   0.002
-Stage mbc        :   0.001
+Stage mbc        :   0.002
 Stage moar       :   0.000
  === Pango::Raw::Exports === (50/60)
 Stage start      :   0.000
-Stage parse      :   1.349
+Stage parse      :   1.465
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
-Stage mast       :   0.006
+Stage mast       :   0.007
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::Structs === (51/60)
 Stage start      :   0.000
-Stage parse      :   1.872
+Stage parse      :   2.013
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
 Stage mast       :   0.002
-Stage mbc        :   0.001
+Stage mbc        :   0.002
 Stage moar       :   0.000
  === Pango::Raw::Subs === (52/60)
 Stage start      :   0.000
-Stage parse      :   1.881
+Stage parse      :   2.077
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -497,29 +492,20 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === nqp === (53/60)
 Stage start      :   0.000
-Stage parse      :   0.080
+Stage parse      :   0.107
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
-Stage mast       :   0.006
+Stage mast       :   0.008
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === AMTK::Raw::Exports === (54/60)
 Stage start      :   0.000
-
-    precomp lib/AMTK/Raw/Exports.pm6
-    Stage start      :   0.000
-    Stage parse      :   0.150
-    Stage syntaxcheck:   0.000
-    Stage ast        :   0.000
-    Stage optimize   :   0.003
-    Stage mast       :   0.004
-    Stage mbc        :   0.001
-Stage parse      :   1.581
+Stage parse      :   1.457
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
-Stage mast       :   0.006
+Stage mast       :   0.011
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === AMTK::Raw::Definitions === (55/60)
@@ -527,17 +513,17 @@ Stage start      :   0.000
 
     precomp lib/AMTK/Raw/Definitions.pm6
     Stage start      :   0.000
-    Stage parse      :   1.817
+    Stage parse      :   2.067
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.015
-    Stage mast       :   0.022
-    Stage mbc        :   0.002
-Stage parse      :   3.308
+    Stage optimize   :   0.016
+    Stage mast       :   0.025
+    Stage mbc        :   0.003
+Stage parse      :   3.711
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.002
-Stage mast       :   0.007
+Stage mast       :   0.008
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === AMTK::Raw::Types === (56/60)
@@ -545,71 +531,71 @@ Stage start      :   0.000
 
     precomp lib/AMTK/Raw/Types.pm6
     Stage start      :   0.000
-    Stage parse      :   3.155
+    Stage parse      :   3.501
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
     Stage optimize   :   0.003
-    Stage mast       :   0.022
-    Stage mbc        :   0.005
-Stage parse      :   4.897
+    Stage mast       :   0.021
+    Stage mbc        :   0.009
+Stage parse      :   5.380
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.019
-Stage mast       :   0.029
-Stage mbc        :   0.017
+Stage optimize   :   0.016
+Stage mast       :   0.033
+Stage mbc        :   0.020
 Stage moar       :   0.000
  === AMTK::Roles::Signals === (57/60)
 Stage start      :   0.000
 
     precomp lib/AMTK/Roles/Signals.pm6
     Stage start      :   0.000
-    Stage parse      :   2.169
+    Stage parse      :   2.393
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.026
-    Stage mast       :   0.032
-    Stage mbc        :   0.012
-Stage parse      :   3.849
+    Stage optimize   :   0.033
+    Stage mast       :   0.038
+    Stage mbc        :   0.017
+Stage parse      :   4.589
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.002
-Stage mast       :   0.004
-Stage mbc        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.002
 Stage moar       :   0.000
  === AMTK::TypedBlocks === (58/60)
 Stage start      :   0.000
 
     precomp lib/AMTK/TypedBlocks.pm6
     Stage start      :   0.000
-    Stage parse      :   2.292
+    Stage parse      :   2.621
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.032
-    Stage mast       :   0.034
-    Stage mbc        :   0.009
-Stage parse      :   4.000
+    Stage optimize   :   0.030
+    Stage mast       :   0.037
+    Stage mbc        :   0.010
+Stage parse      :   4.876
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.002
-Stage mast       :   0.004
-Stage mbc        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.001
 Stage moar       :   0.000
  === AMTK::Raw::Subs === (59/60)
 Stage start      :   0.000
 
     precomp lib/AMTK/Raw/Subs.pm6
     Stage start      :   0.000
-    Stage parse      :   5.239
+    Stage parse      :   6.003
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.047
-    Stage mast       :   0.084
-    Stage mbc        :   0.144
-Stage parse      :   7.248
+    Stage optimize   :   0.056
+    Stage mast       :   0.119
+    Stage mbc        :   0.173
+Stage parse      :   8.619
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.003
-Stage mast       :   0.005
+Stage optimize   :   0.001
+Stage mast       :   0.003
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === AMTK === (60/60)
@@ -617,41 +603,24 @@ Stage start      :   0.000
 
     precomp lib/AMTK.pm6
     Stage start      :   0.000
-    
-        precomp ../p6-GtkPlus/lib/GTK/ShortcutsShortcut.pm6
-        Stage start      :   0.000
-        [31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-GtkPlus/lib/GTK/ShortcutsShortcut.pm6 (GTK::ShortcutsShortcut)
-        Undeclared name:
-            BoxAncestry used at line 11
-        
-    [31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-AMTK/lib/AMTK.pm6 (AMTK)
-    Stage start      :   0.000
-    [31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-GtkPlus/lib/GTK/ShortcutsShortcut.pm6 (GTK::ShortcutsShortcut)
-    Undeclared name:
-        BoxAncestry used at line 11
-    
-    
-    at /home/cbwood/Projects/p6-AMTK/lib/AMTK.pm6 (AMTK):430
-[31m===[0mSORRY![31m===[0m Error while compiling -e
-Stage start      :   0.000
+    Stage parse      :  11.395
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.095
+    Stage mast       :   0.367
+    Stage mbc        :   0.061
+R: GLib::Roles::StaticClass
+Stage parse      :  16.006
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+R: GIO::Roles::ActionMap
+R: GLib::Roles::Object
+R: AMTK::Roles::Signals::MenuShell
 
-    precomp ../p6-GtkPlus/lib/GTK/ShortcutsShortcut.pm6
-    Stage start      :   0.000
-    [31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-GtkPlus/lib/GTK/ShortcutsShortcut.pm6 (GTK::ShortcutsShortcut)
-    Undeclared name:
-        BoxAncestry used at line 11
-    
-[31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-AMTK/lib/AMTK.pm6 (AMTK)
-Stage start      :   0.000
-[31m===[0mSORRY![31m===[0m Error while compiling /home/cbwood/Projects/p6-GtkPlus/lib/GTK/ShortcutsShortcut.pm6 (GTK::ShortcutsShortcut)
-Undeclared name:
-    BoxAncestry used at line 11
-
-
-at /home/cbwood/Projects/p6-AMTK/lib/AMTK.pm6 (AMTK):430
-
-at -e:1
-
-real 178.09
-user 212.24
-sys 13.77
+real 194.00
+user 230.40
+sys 13.78
