@@ -1,0 +1,152 @@
+
+Parallel build started for Raku 2022.04.26.g.280.a.2090.b on MoarVM 2022.04
+ === AMTK::Raw::Exports (1/7) === 
+
+Stage start      :   0.000
+Stage parse      :   0.935
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.005
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK::Raw::Exports compile time: 1.4710835
+ === AMTK::Raw::Definitions (2/7) === 
+
+Stage start      :   0.000
+
+    precomp lib/AMTK/Raw/Definitions.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.253
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.020
+    Stage mast       :   0.030
+    Stage mbc        :   0.006
+Stage parse      :   2.402
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.005
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK::Raw::Definitions compile time: 2.90934963
+ === AMTK::Raw::Types (3/7) === 
+
+Stage start      :   0.000
+
+    precomp lib/AMTK/Raw/Types.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.153
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.002
+    Stage mast       :   0.015
+    Stage mbc        :   0.006
+Stage parse      :   3.332
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.012
+Stage mast       :   0.036
+Stage mbc        :   0.016
+Stage moar       :   0.000
+
+AMTK::Raw::Types compile time: 3.90851302
+ === AMTK::Roles::Signals (4/7) === 
+
+Stage start      :   0.000
+
+    precomp lib/AMTK/Roles/Signals.pm6
+    Stage start      :   0.000
+    
+        load    lib/AMTK/Raw/Types.pm6
+    Stage parse      :   2.509
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.024
+    Stage mast       :   0.030
+    Stage mbc        :   0.033
+Stage parse      :   4.046
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK::Roles::Signals compile time: 4.51157581
+ === AMTK::TypedBlocks (5/7) === 
+
+Stage start      :   0.000
+
+    precomp lib/AMTK/TypedBlocks.pm6
+    Stage start      :   0.000
+    
+        load    lib/AMTK/Raw/Types.pm6
+    Stage parse      :   3.200
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.015
+    Stage mast       :   0.017
+    Stage mbc        :   0.015
+Stage parse      :   4.661
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK::TypedBlocks compile time: 5.16740557
+ === AMTK::Raw::Subs (6/7) === 
+
+Stage start      :   0.000
+
+    precomp lib/AMTK/Raw/Subs.pm6
+    Stage start      :   0.000
+    
+        load    lib/AMTK/Raw/Types.pm6
+    Stage parse      :   5.040
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.114
+    Stage mast       :   0.064
+    Stage mbc        :   0.400
+Stage parse      :   7.086
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK::Raw::Subs compile time: 7.57175142
+ === AMTK (7/7) === 
+
+Stage start      :   0.000
+
+    precomp lib/AMTK.pm6
+    Stage start      :   0.000
+    
+        load    lib/AMTK/Raw/Types.pm6
+    
+        load    lib/AMTK/Raw/Subs.pm6
+    Stage parse      :  11.502
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.063
+    Stage mast       :   0.217
+    Stage mbc        :   0.047
+Stage parse      :  14.512
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+AMTK compile time: 15.02645786
+
+Total compile time: 15.09791258s
